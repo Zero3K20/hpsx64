@@ -126,6 +126,7 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS2X64)/hps2x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
                      $(DIR_LINUX_API)/linux_main.cpp \
+                     $(DIR_LINUX_API)/memmgmt.cpp \
                      $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) \
                      $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) \
                      $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) \
