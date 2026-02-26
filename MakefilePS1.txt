@@ -43,8 +43,17 @@ INC_PS1_BUS = -I$(DIR_PS1_BUS)
 INC_PS1_SYSTEM = -I$(DIR_PS1_SYSTEM)
 INC_PS1 = $(INC_PS1_R3000A) $(INC_PS1_CD) $(INC_PS1_GPU) $(INC_PS1_DMA) $(INC_PS1_INTC) $(INC_PS1_MDEC) $(INC_PS1_SPU) $(INC_PS1_SIO) $(INC_PS1_PIO) $(INC_PS1_TIMER) $(INC_PS1_BUS) $(INC_PS1_SYSTEM)
 
-SRC_PS1_PLATFORM = $(wildcard $(DIR_HPS1X64)/hps1x64/src/*.cpp) $(wildcard $(DIR_PLATFORM)/GUIHandler/src/*.cpp) $(wildcard $(DIR_PLATFORM)/WinFile/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) $(wildcard $(DIR_PLATFORM)/InputBox/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) $(wildcard $(DIR_PLATFORM)/Joystick/src/*.cpp)
-SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) $(wildcard $(DIR_COMMON)/breakpoint/src/*.cpp) $(wildcard $(DIR_COMMON)/debug/src/*.cpp) $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) $(wildcard $(DIR_COMMON)/config/src/*.cpp)
+SRC_PS1_PLATFORM = $(wildcard $(DIR_HPS1X64)/hps1x64/src/*.cpp) $(wildcard $(DIR_PLATFORM)/GUIHandler/src/*.cpp) $(wildcard $(DIR_PLATFORM)/WinFile/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) $(wildcard $(DIR_PLATFORM)/InputBox/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) $(wildcard $(DIR_PLATFORM)/Joystick/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DebugValueList/src/*.cpp)
+SRC_WIN32 = $(DIR_WIN32)/recompile/RecompilerBackend.cpp $(DIR_WIN32)/gamepad/GamepadHandler.cpp $(DIR_WIN32)/capture_console/capture_console.cpp
+SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) $(wildcard $(DIR_COMMON)/breakpoint/src/*.cpp) $(wildcard $(DIR_COMMON)/debug/src/*.cpp) $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) $(wildcard $(DIR_COMMON)/config/src/*.cpp) $(DIR_COMMON)/x64Assembler/x64_assembler.cpp
+
+DIR_LIBCHD = $(DIR_COMMON)/DiskImage/libchd
+DIR_LIBCHDR = $(DIR_LIBCHD)/libchdr
+DIR_LZMA = $(DIR_LIBCHD)/lzma-19.00/src
+DIR_ZLIB = $(DIR_LIBCHD)/zlib-1.2.13
+SRC_C = $(wildcard $(DIR_LIBCHDR)/*.c) $(wildcard $(DIR_LZMA)/*.c) $(wildcard $(DIR_ZLIB)/*.c)
+OBJ_C = $(patsubst %.c,%.o,$(SRC_C))
+INC_LIBCHD = -I$(DIR_LIBCHDR) -I$(DIR_LZMA) -I$(DIR_ZLIB)
 
 SRC_PS1_R3000A = $(wildcard $(DIR_PS1_R3000A)/*.cpp) $(wildcard $(DIR_PS1_R3000A)/execute/*.cpp) $(wildcard $(DIR_PS1_R3000A)/lookup/*.cpp) $(wildcard $(DIR_PS1_R3000A)/print/*.cpp) $(wildcard $(DIR_PS1_R3000A)/COP2/*.cpp) $(wildcard $(DIR_PS1_R3000A)/recompile/*.cpp)
 SRC_PS1_CD = $(wildcard $(DIR_PS1_CD)/*.cpp)
@@ -63,7 +72,7 @@ SRC_PS1 = $(SRC_PS1_R3000A) $(SRC_PS1_CD) $(SRC_PS1_GPU) $(SRC_PS1_DMA) $(SRC_PS
 
 
 INC = $(INC_PS1) $(INC_COMMON) $(INC_PS1_PLATFORM) $(INC_WIN32) $(INC_YAML)
-SRC = $(SRC_PS1) $(SRC_COMMON) $(SRC_PS1_PLATFORM)
+SRC = $(SRC_PS1) $(SRC_COMMON) $(SRC_PS1_PLATFORM) $(SRC_WIN32)
 LIBS = -lglew32 -lopengl32 -lglu32 -lgdi32 -lComctl32 -lkernel32 -lwinmm -ldinput8 -ldxguid
 CFLAGS = -w -Wl,-subsystem,console -mwindows -std=c++17 -fpermissive -ftemplate-depth=2048 -static -static-libgcc -static-libstdc++ -DGLEW_STATIC -O3 -DUSE_PS1_GPU_TEMPLATES -DDISABLE_RECOMPILER_R3000A
 #-std=gnu++11
@@ -72,5 +81,8 @@ CFLAGS = -w -Wl,-subsystem,console -mwindows -std=c++17 -fpermissive -ftemplate-
 OBJ = hps1x64
 
 
-$(OBJ): $(SRC)
-	g++ $(CFLAGS) $(INC) -o $@ $^ $(LIBS)
+$(OBJ): $(SRC) $(OBJ_C)
+	g++ $(CFLAGS) $(INC) -o $@ $(SRC) $(OBJ_C) $(LIBS)
+
+$(OBJ_C): %.o: %.c
+	gcc -w -O3 $(INC_LIBCHD) -c -o $@ $<

@@ -3,8 +3,8 @@
 *.a
 *.so
 *.dll
-hps1x64
-hps2x64
+hps1x64_linux
+hps2x64_linux
 hps1x64_debug
 hps2x64_debug
 
@@ -14,6 +14,7 @@ hps2x64.exe
 
 # IDE files
 .vs/
+.vscode/
 *.user
 *.suo
 

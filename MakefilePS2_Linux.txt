@@ -12,6 +12,11 @@ DIR_PLATFORM = $(DIR_COMMON)/WindowsAPI
 DIR_HPS1X64 = ./hps1x64/src
 DIR_HPS2X64 = ./hps2x64/src
 
+DIR_LIBCHD = $(DIR_COMMON)/DiskImage/libchd
+DIR_LIBCHDR = $(DIR_LIBCHD)/libchdr
+DIR_LZMA = $(DIR_LIBCHD)/lzma-19.00/src
+DIR_ZLIB = $(DIR_LIBCHD)/zlib-1.2.13
+
 # Linux API include dirs (these override Windows versions - MUST come first)
 INC_LINUX_COMPAT = -include $(DIR_LINUX_API)/windows_compat.h
 INC_LINUX_API = -I$(DIR_LINUX_API) \
@@ -25,6 +30,9 @@ INC_COMMON = -I$(DIR_COMMON) \
              -I$(DIR_COMMON)/breakpoint/src \
              -I$(DIR_COMMON)/debug/src \
              -I$(DIR_COMMON)/DiskImage/cd/src \
+             -I$(DIR_COMMON)/DiskImage/libchd/libchdr \
+             -I$(DIR_COMMON)/DiskImage/libchd/lzma-19.00/src \
+             -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 \
              -I$(DIR_COMMON)/x64Encoder/src/ \
              -I$(DIR_COMMON)/config/src/
 
@@ -117,7 +125,13 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS2X64)/hps2x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gamepad/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
-                     $(DIR_LINUX_API)/linux_main.cpp
+                     $(DIR_LINUX_API)/linux_main.cpp \
+                     $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/DebugValueList/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/InputBox/src/*.cpp) \
+                     $(DIR_COMMON)/x64Assembler/x64_assembler.cpp
 
 SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) \
              $(wildcard $(DIR_COMMON)/breakpoint/src/*.cpp) \
@@ -125,6 +139,14 @@ SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) \
              $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/config/src/*.cpp)
+
+# C files from third-party libraries must be compiled with gcc (not g++)
+# to avoid conflicts with windows_compat.h and K&R C syntax
+SRC_C = $(wildcard $(DIR_LIBCHDR)/*.c) \
+        $(wildcard $(DIR_LZMA)/*.c) \
+        $(wildcard $(DIR_ZLIB)/*.c)
+OBJ_C = $(patsubst %.c,%.o,$(SRC_C))
+INC_LIBCHD = -I$(DIR_LIBCHDR) -I$(DIR_LZMA) -I$(DIR_ZLIB)
 
 SRC_PS1_R3000A = $(wildcard $(DIR_PS1_R3000A)/*.cpp) \
                  $(wildcard $(DIR_PS1_R3000A)/execute/*.cpp) \
@@ -192,8 +214,11 @@ CFLAGS = -w -Wreturn-type -Wuninitialized -Wmaybe-uninitialized -std=c++17 \
 
 OBJ = hps2x64_linux
 
-$(OBJ): $(SRC)
-	g++ $(CFLAGS) $(INC) -o $@ $^ $(LIBS)
+$(OBJ): $(SRC) $(OBJ_C)
+	g++ $(CFLAGS) $(INC) -o $@ $(SRC) $(OBJ_C) $(LIBS)
+
+$(OBJ_C): %.o: %.c
+	gcc -w -O3 $(INC_LIBCHD) -D_open=open -D_read=read -D_write=write -D_close=close -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_C)

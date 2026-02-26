@@ -87,7 +87,13 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS1X64)/hps1x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
                      $(DIR_LINUX_API)/linux_main.cpp \
-                     $(DIR_LINUX_API)/memmgmt.cpp
+                     $(DIR_LINUX_API)/memmgmt.cpp \
+                     $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/DebugValueList/src/*.cpp) \
+                     $(wildcard $(DIR_PLATFORM)/InputBox/src/*.cpp) \
+                     $(DIR_COMMON)/x64Assembler/x64_assembler.cpp
 
 DIR_LIBCHD = $(DIR_COMMON)/DiskImage/libchd
 DIR_LIBCHDR = $(DIR_LIBCHD)/libchdr
@@ -100,10 +106,15 @@ SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) \
              $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/config/src/*.cpp) \
-             $(wildcard $(DIR_LIBCHDR)/*.c) \
-             $(wildcard $(DIR_LZMA)/*.c) \
-             $(wildcard $(DIR_ZLIB)/*.c) \
              $(DIR_COMMON)/memmgmt.cpp
+
+# C files from third-party libraries must be compiled with gcc (not g++)
+# to avoid conflicts with windows_compat.h and K&R C syntax
+SRC_C = $(wildcard $(DIR_LIBCHDR)/*.c) \
+        $(wildcard $(DIR_LZMA)/*.c) \
+        $(wildcard $(DIR_ZLIB)/*.c)
+OBJ_C = $(patsubst %.c,%.o,$(SRC_C))
+INC_LIBCHD = -I$(DIR_LIBCHDR) -I$(DIR_LZMA) -I$(DIR_ZLIB)
 
 SRC_PS1_R3000A = $(wildcard $(DIR_PS1_R3000A)/*.cpp) \
                  $(wildcard $(DIR_PS1_R3000A)/execute/*.cpp) \
@@ -140,8 +151,11 @@ CFLAGS = -w -std=c++17 -fpermissive -ftemplate-depth=2048 -msse4.2 \
 
 OBJ = hps1x64_linux
 
-$(OBJ): $(SRC)
-	g++ $(CFLAGS) $(INC) -o $@ $^ $(LIBS)
+$(OBJ): $(SRC) $(OBJ_C)
+	g++ $(CFLAGS) $(INC) -o $@ $(SRC) $(OBJ_C) $(LIBS)
+
+$(OBJ_C): %.o: %.c
+	gcc -w -O3 $(INC_LIBCHD) -D_open=open -D_read=read -D_write=write -D_close=close -c -o $@ $<
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_C)

@@ -31,7 +31,7 @@ volatile u32 Window::InModalMenuLoop = 0;
 int Window::NextShortcutKeyID = 0;
 vector<Window::ShortcutKey_Entry> Window::ShortcutKey_Entries;
 long Window::GUIThread_isRunning = 0;
-void* Window::GUIThread = nullptr;
+Window::GUIThreadInfo* Window::GUIThread = nullptr;
 
 // Current SDL event queue
 static SDL_Event s_sdl_event;
