@@ -344,7 +344,7 @@ void Execute::EXECUTE_PS2_DOUBLE_FTOI_PACKED_AVX2(VU* v, Vu::Instruction::Format
 	}
 
 
-	iop128_1 = _mm_cvtps_epi32(iop128_0);
+	iop128_1 = _mm_cvtps_epi32(_mm_castsi128_ps(iop128_0));
 
 	//iop128_offset = _mm_sign_epi32(_mm_srli_epi32(_mm_xor_si128(iop128_0, iop128_1), 31), _mm_xor_si128(_mm_srai_epi32(iop128_1, 31), iop128_1));
 	iop128_offset = _mm_sign_epi32(_mm_srli_epi32(_mm_xor_si128(iop128_0, iop128_1), 31), iop128_1);

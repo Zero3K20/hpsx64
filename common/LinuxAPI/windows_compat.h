@@ -163,13 +163,12 @@ typedef _EXCEPTION_POINTERS* LPEXCEPTION_POINTERS;
 inline unsigned int _controlfp(unsigned int /*newval*/, unsigned int /*mask*/) { return 0; }
 inline unsigned int _clearfp() { return 0; }
 
-// __try/__except is a MSVC-specific feature; on Linux, use a no-op wrapper
-// The code using __try/__except MUST be guarded with #ifdef _WIN32
-// If it's not guarded, define these to be no-ops (they won't do SEH but will compile)
+// __try/__except is a MSVC/GCC SEH extension; on Linux GCC treats __try as try,
+// so map __except to catch(...) to form a valid try/catch block.
 #ifndef _WIN32
-#define __try        if(1)
-#define __except(x)  else if(0)
-#define __finally    if(1)
+#define __try         try
+#define __except(x)   catch(...)
+#define __finally     if(1)
 
 inline LPEXCEPTION_POINTERS GetExceptionInformation() { return nullptr; }
 inline unsigned int GetExceptionCode() { return 0; }
@@ -243,6 +242,27 @@ struct WAVEHDR {
     WAVEHDR* lpNext;
     DWORD* reserved;
 };
+
+// WaveOut flags and return types
+#define WHDR_DONE       0x00000001
+#define WHDR_PREPARED   0x00000002
+#define MMSYSERR_NOERROR 0
+typedef UINT MMRESULT;
+
+// WaveOut API stubs
+inline MMRESULT waveOutOpen(HWAVEOUT* /*phwo*/, UINT /*uDeviceID*/, const WAVEFORMATEX* /*pwfx*/,
+                             DWORD_PTR /*dwCallback*/, DWORD_PTR /*dwInstance*/, DWORD /*fdwOpen*/)
+{ return MMSYSERR_NOERROR; }
+inline MMRESULT waveOutClose(HWAVEOUT /*hwo*/) { return MMSYSERR_NOERROR; }
+inline MMRESULT waveOutPrepareHeader(HWAVEOUT /*hwo*/, WAVEHDR* pwh, UINT /*cbwh*/)
+{ if (pwh) pwh->dwFlags |= WHDR_PREPARED; return MMSYSERR_NOERROR; }
+inline MMRESULT waveOutUnprepareHeader(HWAVEOUT /*hwo*/, WAVEHDR* pwh, UINT /*cbwh*/)
+{ if (pwh) { pwh->dwFlags &= ~WHDR_PREPARED; pwh->dwFlags |= WHDR_DONE; } return MMSYSERR_NOERROR; }
+inline MMRESULT waveOutWrite(HWAVEOUT /*hwo*/, WAVEHDR* pwh, UINT /*cbwh*/)
+{ if (pwh) pwh->dwFlags &= ~WHDR_DONE; return MMSYSERR_NOERROR; }
+inline MMRESULT waveOutGetDevCaps(UINT /*uDeviceID*/, void* /*pwoc*/, UINT /*cbwoc*/)
+{ return MMSYSERR_NOERROR; }
+inline UINT waveOutGetNumDevs() { return 1; }
 
 // ---- Timer API stubs (winmm.lib equivalents) ----
 #define TIMERR_NOERROR  0
