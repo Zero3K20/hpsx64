@@ -11,14 +11,6 @@
 #include <vector>
 #include <cstdint>
 
-// Compatibility types replacing Windows types
-typedef void* HWND;
-typedef void* HINSTANCE;
-typedef void* HMENU;
-typedef void* HACCEL;
-typedef uint32_t UINT;
-typedef uint32_t DWORD;
-
 namespace WindowClass {
 
 // Forward declaration for compatibility

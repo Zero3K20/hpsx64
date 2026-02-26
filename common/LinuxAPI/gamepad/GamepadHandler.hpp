@@ -11,8 +11,17 @@
 #include <memory>
 #include <cstdint>
 
-// Compatibility type aliases (replacing Windows/DirectInput types)
-typedef void* HWND;
+// These type aliases are provided by windows_compat.h when included before this
+// Only define them if not already defined (i.e. when used standalone)
+#if !defined(_WIN32) && !defined(DWORD)
+   typedef uint32_t DWORD;
+#endif
+#if !defined(_WIN32) && !defined(BYTE)
+   typedef uint8_t BYTE;
+#endif
+#if !defined(_WIN32) && !defined(HWND)
+   typedef void* HWND;
+#endif
 
 // Simplified DIJOYSTATE2-compatible struct for Linux
 struct DIJOYSTATE2 {
@@ -25,13 +34,6 @@ struct DIJOYSTATE2 {
     BYTE rgbButtons[128];   // buttons
     DWORD rgdwPOV[4];       // POV hats
 };
-
-#ifndef DWORD
-typedef uint32_t DWORD;
-#endif
-#ifndef BYTE
-typedef uint8_t BYTE;
-#endif
 
 class GamepadHandler
 {

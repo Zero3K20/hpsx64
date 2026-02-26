@@ -14,7 +14,8 @@ DIR_HPS2X64 = ./hps2x64/src
 
 # Linux API include dirs (these override Windows versions - MUST come first)
 INC_LINUX_COMPAT = -include $(DIR_LINUX_API)/windows_compat.h
-INC_LINUX_API = -I$(DIR_LINUX_API)/GUIHandler/src -I$(DIR_LINUX_API)/WinFile/src \
+INC_LINUX_API = -I$(DIR_LINUX_API) \
+                -I$(DIR_LINUX_API)/GUIHandler/src -I$(DIR_LINUX_API)/WinFile/src \
                 -I$(DIR_LINUX_API)/gui -I$(DIR_LINUX_API)/gamepad \
                 -I$(DIR_LINUX_API)/padconfig -I$(DIR_LINUX_API)/capture_console \
                 -I$(DIR_LINUX_API)/recompile -I$(DIR_LINUX_API)/audio
@@ -189,7 +190,7 @@ CFLAGS = -w -Wreturn-type -Wuninitialized -Wmaybe-uninitialized -std=c++17 \
          -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES \
          -DLINUX_BUILD
 
-OBJ = hps2x64
+OBJ = hps2x64_linux
 
 $(OBJ): $(SRC)
 	g++ $(CFLAGS) $(INC) -o $@ $^ $(LIBS)

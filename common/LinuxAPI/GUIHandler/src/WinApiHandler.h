@@ -42,29 +42,46 @@
 
 using json = nlohmann::ordered_json;
 
-// Platform-neutral type aliases
-typedef void* HWND;
-typedef void* HINSTANCE;
-typedef void* HMENU;
-typedef void* HFONT;
-typedef void* HGLRC;
-typedef void* HDC;
-typedef unsigned int UINT;
-typedef unsigned long DWORD;
-typedef unsigned long long UINT_PTR;
-typedef long LRESULT;
-typedef long LPARAM;
-typedef unsigned long long WPARAM;
-typedef unsigned int COLORREF;
+// Platform-neutral type aliases (defined here for standalone use; windows_compat.h takes precedence when force-included)
+#ifndef _WIN32
+#  ifndef HGLRC
+   typedef void* HGLRC;
+#  endif
+#  ifndef HDC
+   typedef void* HDC;
+#  endif
+#endif
+
 #define DT_SINGLELINE 0x20
 #define DT_NOCLIP 0x100
 #define DT_EXTERNALLEADING 0x200
 #define DT_LEFT 0
 #define DT_TOP 0
 #define DT_CALCRECT 0x400
+#ifndef WM_COMMAND
 #define WM_COMMAND 0x0111
 #define WM_KEYDOWN 0x0100
 #define WM_KEYUP 0x0101
+#define WM_NOTIFY  0x004E
+#define WM_CLOSE   0x0010
+#define WM_DESTROY 0x0002
+#define WM_SIZE    0x0005
+#define WM_PAINT   0x000F
+#define WM_LBUTTONDOWN 0x0201
+#define WM_RBUTTONDOWN 0x0204
+#define WM_MOUSEMOVE   0x0200
+#endif
+
+// Win32 notification header stub
+#ifndef __NMHDR_DEFINED
+#define __NMHDR_DEFINED
+struct NMHDR {
+    HWND hwndFrom;
+    UINT_PTR idFrom;
+    UINT code;
+};
+typedef NMHDR* LPNMHDR;
+#endif
 
 
 namespace WindowClass
@@ -286,7 +303,10 @@ using namespace std;
             if (m_sdl_window && m_gl_context)
                 SDL_GL_MakeCurrent(m_sdl_window, m_gl_context);
         }
+        inline void OpenGL_MakeCurrentWindow() { OpenGL_MakeCurrent(); }
         inline static void OpenGL_ReleaseWindow() { SDL_GL_MakeCurrent(nullptr, nullptr); }
+        inline bool EnableOpenGL() { return CreateOpenGLContext(); }
+        inline void FlipScreen() { SwapBuffers(); }
 
         // Display pixel data via OpenGL
         void DisplayPixels(const unsigned char* pixels, int width, int height);
@@ -308,8 +328,12 @@ using namespace std;
         HWND hWnd;
         string Text;
         int x, y, width, height;
+        int id;
+        Window* Parent;
 
-        Button() : hWnd(nullptr), x(0), y(0), width(0), height(0) {}
+        static const int DefaultFlags_CmdButton = 0;
+
+        Button() : hWnd(nullptr), x(0), y(0), width(0), height(0), id(0), Parent(nullptr) {}
 
         bool Create(HWND hParent, const char* text, int _x, int _y, int _width, int _height,
                     HMENU /*hMenu*/ = nullptr) {
@@ -317,10 +341,19 @@ using namespace std;
             Text = text;
             return true;
         }
+        HWND Create_CmdButton(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                               const char* Caption = nullptr, long long _id = 0, int /*flags*/ = DefaultFlags_CmdButton) {
+            Parent = ParentWindow;
+            x = _x; y = _y; width = _width; height = _height;
+            if (Caption) Text = Caption;
+            id = (int)_id;
+            return nullptr;
+        }
         bool Destroy() { return true; }
         bool SetCaption(const char* caption) { Text = caption; return true; }
         bool Enable() { return true; }
         bool Disable() { return true; }
+        bool AddEvent(unsigned int /*message*/, WindowClass::Window::EventFunction /*Func*/) { return true; }
     };
 
 
@@ -330,8 +363,12 @@ using namespace std;
         HWND hWnd;
         string Text;
         int x, y, width, height;
+        int id;
+        Window* Parent;
 
-        Static() : hWnd(nullptr), x(0), y(0), width(0), height(0) {}
+        static const int DefaultFlags_Text = 0;
+
+        Static() : hWnd(nullptr), x(0), y(0), width(0), height(0), id(0), Parent(nullptr) {}
 
         bool Create(HWND /*hParent*/, const char* text, int _x, int _y, int _width, int _height,
                     HMENU /*hMenu*/ = nullptr) {
@@ -339,10 +376,19 @@ using namespace std;
             Text = text;
             return true;
         }
+        HWND Create_Text(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                          const char* Caption = nullptr, long long _id = 0, int /*flags*/ = DefaultFlags_Text) {
+            Parent = ParentWindow;
+            x = _x; y = _y; width = _width; height = _height;
+            if (Caption) Text = Caption;
+            id = (int)_id;
+            return nullptr;
+        }
         bool Destroy() { return true; }
         bool SetCaption(const char* caption) { Text = caption; return true; }
         bool SetText(const char* text) { Text = text; return true; }
         string GetText() { return Text; }
+        bool AddEvent(unsigned int /*message*/, WindowClass::Window::EventFunction /*Func*/) { return true; }
     };
 
 
@@ -352,20 +398,40 @@ using namespace std;
         HWND hWnd;
         string Text;
         int x, y, width, height;
+        int id;
+        Window* Parent;
 
-        Edit() : hWnd(nullptr), x(0), y(0), width(0), height(0) {}
+        Edit() : hWnd(nullptr), x(0), y(0), width(0), height(0), id(0), Parent(nullptr) {}
 
-        bool Create(HWND /*hParent*/, int _x, int _y, int _width, int _height,
-                    const char* text = "", HMENU /*hMenu*/ = nullptr) {
+        HWND Create(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                    const char* text = "", long long _id = 0, int /*flags*/ = 0) {
+            Parent = ParentWindow;
             x = _x; y = _y; width = _width; height = _height;
-            Text = text;
-            return true;
+            id = (int)_id;
+            if (text) Text = text;
+            return nullptr;
         }
         bool Destroy() { return true; }
         bool SetText(const char* text) { Text = text; return true; }
-        string GetText() { return Text; }
+        int SetText(char* text) { if (text) Text = text; return 0; } // int return for compatibility
+        char* GetText() {
+            strncpy(m_caption, Text.c_str(), sizeof(m_caption) - 1);
+            m_caption[sizeof(m_caption) - 1] = 0;
+            return m_caption;
+        }
+        int GetTextLength() { return (int)Text.size(); }
         void AppendText(const char* text) { Text += text; }
         void Clear() { Text = ""; }
+        bool AddEvent(unsigned int /*message*/, WindowClass::Window::EventFunction /*Func*/) { return true; }
+        void SetFont(HFONT /*hf*/) {}
+        bool Enable() { return true; }
+        bool Disable() { return true; }
+        bool Set_XY(int _x, int _y) { x = _x; y = _y; return true; }
+
+    private:
+        char m_caption[256] = {};
+    public:
+        bool Set_Size(int _w, int _h) { width = _w; height = _h; return true; }
     };
 
 
@@ -376,13 +442,17 @@ using namespace std;
         vector<string> Items;
         int selection;
         int x, y, width, height;
+        int id;
+        Window* Parent;
 
-        ComboBox() : hWnd(nullptr), selection(0), x(0), y(0), width(0), height(0) {}
+        ComboBox() : hWnd(nullptr), selection(0), x(0), y(0), width(0), height(0), id(0), Parent(nullptr) {}
 
-        bool Create(HWND /*hParent*/, int _x, int _y, int _width, int _height,
-                    HMENU /*hMenu*/ = nullptr) {
+        HWND Create(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                    const char* /*caption*/ = nullptr, long long _id = 0, int /*flags*/ = 0) {
+            Parent = ParentWindow;
             x = _x; y = _y; width = _width; height = _height;
-            return true;
+            id = (int)_id;
+            return nullptr;
         }
         bool Destroy() { return true; }
         void AddItem(const char* item) { Items.push_back(item); }
@@ -390,6 +460,7 @@ using namespace std;
         int GetSelection() { return selection; }
         void SetSelection(int idx) { if (idx >= 0 && idx < (int)Items.size()) selection = idx; }
         string GetSelectedText() { return (selection < (int)Items.size()) ? Items[selection] : ""; }
+        bool AddEvent(unsigned int /*message*/, WindowClass::Window::EventFunction /*Func*/) { return true; }
     };
 
 
@@ -400,13 +471,17 @@ using namespace std;
         vector<string> Items;
         int selection;
         int x, y, width, height;
+        int id;
+        Window* Parent;
 
-        ListBox() : hWnd(nullptr), selection(-1), x(0), y(0), width(0), height(0) {}
+        ListBox() : hWnd(nullptr), selection(-1), x(0), y(0), width(0), height(0), id(0), Parent(nullptr) {}
 
-        bool Create(HWND /*hParent*/, int _x, int _y, int _width, int _height,
-                    HMENU /*hMenu*/ = nullptr) {
+        HWND Create(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                    const char* /*caption*/ = nullptr, long long _id = 0, int /*flags*/ = 0) {
+            Parent = ParentWindow;
             x = _x; y = _y; width = _width; height = _height;
-            return true;
+            id = (int)_id;
+            return nullptr;
         }
         bool Destroy() { return true; }
         void AddItem(const char* item) { Items.push_back(item); }
@@ -415,6 +490,174 @@ using namespace std;
         void SetSelection(int idx) { if (idx >= 0 && idx < (int)Items.size()) selection = idx; }
         string GetSelectedText() { return (selection >= 0 && selection < (int)Items.size()) ? Items[selection] : ""; }
         int GetCount() { return (int)Items.size(); }
+        bool AddEvent(unsigned int /*message*/, WindowClass::Window::EventFunction /*Func*/) { return true; }
+    };
+
+
+    // ListView stub - used by DebugValueList
+    class ListView
+    {
+    public:
+        // LVCOLUMN and LVITEM structs (simplified)
+        struct LVCOLUMN {
+            int mask;
+            int fmt;
+            int cx;
+            char* pszText;
+            int cchTextMax;
+            int iSubItem;
+            int iImage;
+            int iOrder;
+        };
+        typedef LVCOLUMN* LPLVCOLUMN;
+
+        struct LVITEM {
+            int mask;
+            int iItem;
+            int iSubItem;
+            int state;
+            int stateMask;
+            char* pszText;
+            int cchTextMax;
+            int iImage;
+            intptr_t lParam;
+        };
+        typedef LVITEM* LPLVITEM;
+
+        HWND hWnd;
+        int x, y, width, height;
+        long long id;
+        Window* Parent;
+
+        struct Column {
+            std::string text;
+            int width;
+        };
+        std::vector<Column> columns;
+
+        struct Row {
+            std::vector<std::string> cells;
+        };
+        std::vector<Row> rows;
+
+        static const int MaxStringLength = 256;
+        char caption[256] = {};
+
+        // Static work buffers
+        static LVCOLUMN lvc;
+        static LVITEM lvi;
+
+        ListView() : hWnd(nullptr), x(0), y(0), width(0), height(0), id(0), Parent(nullptr) {}
+
+        bool Create(HWND /*hParent*/, int _x, int _y, int _width, int _height,
+                    HMENU /*hMenu*/ = nullptr) {
+            x = _x; y = _y; width = _width; height = _height;
+            return true;
+        }
+
+        // Create with header row (main factory method)
+        HWND Create_wHeader(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                             const char* /*Caption*/ = "", long long _id = 0, int /*flags*/ = 0) {
+            Parent = ParentWindow;
+            x = _x; y = _y; width = _width; height = _height;
+            id = _id;
+            return nullptr;
+        }
+        HWND Create_NoHeader(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                              const char* Caption = "", long long _id = 0, int flags = 0) {
+            return Create_wHeader(ParentWindow, _x, _y, _width, _height, Caption, _id, flags);
+        }
+        HWND Create_Dynamic_wHeader(Window* ParentWindow, int _x, int _y, int _width, int _height,
+                                     const char* Caption = "", long long _id = 0, int flags = 0) {
+            return Create_wHeader(ParentWindow, _x, _y, _width, _height, Caption, _id, flags);
+        }
+
+        bool Destroy() { return true; }
+
+        // Static CreateColumn factory
+        static LPLVCOLUMN CreateColumn(int col, int widthPixels, char* headerText) {
+            lvc.mask = 0x1F;
+            lvc.fmt = 0; // LVCFMT_LEFT
+            lvc.cx = widthPixels;
+            lvc.pszText = headerText;
+            lvc.iSubItem = col;
+            return &lvc;
+        }
+
+        int InsertColumn(int col, LPLVCOLUMN data) {
+            if (col >= (int)columns.size()) columns.resize(col + 1);
+            columns[col].text = data->pszText ? data->pszText : "";
+            columns[col].width = data->cx;
+            return col;
+        }
+        // Convenience overload
+        int InsertColumn(int col, const char* text, int colwidth = 100) {
+            if (col >= (int)columns.size()) columns.resize(col + 1);
+            columns[col].text = text;
+            columns[col].width = colwidth;
+            return col;
+        }
+
+        static LPLVITEM CreateItem(int row, int col, const char* text) {
+            lvi.mask = 0x11;
+            lvi.state = 0;
+            lvi.stateMask = 0;
+            lvi.pszText = const_cast<char*>(text);
+            lvi.iItem = row;
+            lvi.iSubItem = col;
+            return &lvi;
+        }
+
+        int InsertRow(int row) {
+            if (row >= (int)rows.size()) rows.resize(row + 1);
+            return row;
+        }
+        // Insert via LPLVITEM
+        int InsertRow(LPLVITEM /*item*/) {
+            rows.push_back(Row{});
+            return (int)rows.size() - 1;
+        }
+
+        void SetItemText(int row, int column, const char* text) {
+            if (row >= (int)rows.size()) rows.resize(row + 1);
+            if (column >= (int)rows[row].cells.size()) rows[row].cells.resize(column + 1);
+            rows[row].cells[column] = text;
+        }
+        char* GetItemText(int row, int column) {
+            if (row < (int)rows.size() && column < (int)rows[row].cells.size())
+                strncpy(caption, rows[row].cells[column].c_str(), MaxStringLength - 1);
+            else
+                caption[0] = 0;
+            return caption;
+        }
+
+        int GetRowOfSelectedItem() { return -1; }
+        bool isRowVisible(int /*row*/) { return true; }
+        int GetVisibleItemsCount() { return (int)rows.size(); }
+        bool DeleteColumn(int /*col*/) { return true; }
+        bool DeleteRow(int row) {
+            if (row < (int)rows.size()) rows.erase(rows.begin() + row);
+            return true;
+        }
+        bool EnsureRowVisible(int /*row*/) { return true; }
+        void SetItemCount(int count) { rows.resize(count); }
+        void SetItemCountEx(int count) { rows.resize(count); }
+        bool SetColumnWidth(int col, int w) {
+            if (col < (int)columns.size()) columns[col].width = w;
+            return true;
+        }
+        bool AutoSizeColumn(int col) { return SetColumnWidth(col, 100); }
+        bool Reset() { rows.clear(); return true; }
+        int GetRowCount() { return (int)rows.size(); }
+        bool Set_XY(int _x, int _y) { x = _x; y = _y; return true; }
+        bool Set_Size(int _w, int _h) { width = _w; height = _h; return true; }
+        HWND GetHandleToParent() { return nullptr; }
+
+        bool AddEvent(unsigned int /*message*/, WindowClass::Window::EventFunction /*Func*/) { return true; }
+        bool RemoveEvent(unsigned int /*message*/) { return true; }
+        void SetFont(HFONT /*hf*/) {}
+
+        static void InitCommonControls() {}
     };
 
 } // namespace WindowClass

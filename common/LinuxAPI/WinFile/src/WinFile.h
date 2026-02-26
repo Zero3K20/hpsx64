@@ -24,8 +24,6 @@
 #include <string>
 #include <cstdio>
 #include <cstdint>
-#include <thread>
-#include <functional>
 
 using namespace std;
 
@@ -36,7 +34,6 @@ namespace WinApi
 	{
 		FILE* hFile;
 		bool m_async_pending;
-		std::thread m_async_thread;
 
 	public:
 		// dummy for API compatibility

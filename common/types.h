@@ -24,6 +24,7 @@
 #include <intrin.h>
 #else
 #include <x86intrin.h>
+#include <cpuid.h>
 #endif
 
 //#define GCC_COMPILER (defined(__GNUC__) && !defined(__clang__))
@@ -375,15 +376,27 @@ union MultiPtr
 
 
 inline static bool check_avx512_support() {
+#if defined(_WIN32) || defined(_WIN64)
 	int cpuInfo[4];
 	__cpuidex(cpuInfo, 7, 0);
 	return (cpuInfo[1] & (1 << 16)) != 0;
+#else
+	unsigned int eax, ebx, ecx, edx;
+	__cpuid_count(7, 0, eax, ebx, ecx, edx);
+	return (ebx & (1 << 16)) != 0;
+#endif
 }
 
 inline static bool check_avx2_support() {
+#if defined(_WIN32) || defined(_WIN64)
 	int cpuInfo[4];
 	__cpuidex(cpuInfo, 7, 0);
 	return (cpuInfo[1] & (1 << 5)) != 0; // Check for bit 5 in EBX for AVX2
+#else
+	unsigned int eax, ebx, ecx, edx;
+	__cpuid_count(7, 0, eax, ebx, ecx, edx);
+	return (ebx & (1 << 5)) != 0;
+#endif
 }
 
 
@@ -478,7 +491,9 @@ inline constexpr size_t countof(T(&)[N]) noexcept {
 //typedef unsigned char UINT8;
 
 // this is for code ripped from pcsx2
+#if !defined(__linux__) || defined(__MINGW32__)
 typedef unsigned long uint;
+#endif
 #define __fi inline
 #define __ri inline
 #define __aligned16 ALIGN16

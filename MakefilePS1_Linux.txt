@@ -13,7 +13,8 @@ DIR_HPS1X64 = ./hps1x64/src
 
 # Linux API include dirs (these override Windows versions - MUST come first)
 INC_LINUX_COMPAT = -include $(DIR_LINUX_API)/windows_compat.h
-INC_LINUX_API = -I$(DIR_LINUX_API)/GUIHandler/src -I$(DIR_LINUX_API)/WinFile/src \
+INC_LINUX_API = -I$(DIR_LINUX_API) \
+                -I$(DIR_LINUX_API)/GUIHandler/src -I$(DIR_LINUX_API)/WinFile/src \
                 -I$(DIR_LINUX_API)/gui -I$(DIR_LINUX_API)/gamepad \
                 -I$(DIR_LINUX_API)/padconfig -I$(DIR_LINUX_API)/capture_console \
                 -I$(DIR_LINUX_API)/recompile -I$(DIR_LINUX_API)/audio
@@ -41,7 +42,8 @@ INC_COMMON = -I$(DIR_COMMON) \
              -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 \
              -I$(DIR_COMMON)/StringUtilities \
              -I$(DIR_COMMON)/Vulkan \
-             -I$(DIR_COMMON)/x64Encoder/src
+             -I$(DIR_COMMON)/x64Encoder/src \
+             -I$(DIR_COMMON)/x64Assembler
 
 DIR_PS1 = $(DIR_HPS1X64)
 DIR_PS1_R3000A = $(DIR_PS1)/r3000a/src
@@ -84,14 +86,24 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS1X64)/hps1x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gamepad/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
-                     $(DIR_LINUX_API)/linux_main.cpp
+                     $(DIR_LINUX_API)/linux_main.cpp \
+                     $(DIR_LINUX_API)/memmgmt.cpp
+
+DIR_LIBCHD = $(DIR_COMMON)/DiskImage/libchd
+DIR_LIBCHDR = $(DIR_LIBCHD)/libchdr
+DIR_LZMA = $(DIR_LIBCHD)/lzma-19.00/src
+DIR_ZLIB = $(DIR_LIBCHD)/zlib-1.2.13
 
 SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) \
              $(wildcard $(DIR_COMMON)/breakpoint/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/debug/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) \
-             $(wildcard $(DIR_COMMON)/config/src/*.cpp)
+             $(wildcard $(DIR_COMMON)/config/src/*.cpp) \
+             $(wildcard $(DIR_LIBCHDR)/*.c) \
+             $(wildcard $(DIR_LZMA)/*.c) \
+             $(wildcard $(DIR_ZLIB)/*.c) \
+             $(DIR_COMMON)/memmgmt.cpp
 
 SRC_PS1_R3000A = $(wildcard $(DIR_PS1_R3000A)/*.cpp) \
                  $(wildcard $(DIR_PS1_R3000A)/execute/*.cpp) \
@@ -126,7 +138,7 @@ CFLAGS = -w -std=c++17 -fpermissive -ftemplate-depth=2048 -msse4.2 \
          -O3 -DUSE_PS1_GPU_TEMPLATES -DDISABLE_RECOMPILER_R3000A \
          -DLINUX_BUILD
 
-OBJ = hps1x64
+OBJ = hps1x64_linux
 
 $(OBJ): $(SRC)
 	g++ $(CFLAGS) $(INC) -o $@ $^ $(LIBS)

@@ -15,6 +15,10 @@ namespace WindowClass
 Debug::Log debug;
 volatile u32 NextIndex = StartId;
 
+// Static ListView buffers
+WindowClass::ListView::LVCOLUMN WindowClass::ListView::lvc = {};
+WindowClass::ListView::LVITEM WindowClass::ListView::lvi = {};
+
 // Static member definitions for Window
 volatile unsigned long Window::Busy = 0;
 volatile unsigned long long Window::LastResult = 0;

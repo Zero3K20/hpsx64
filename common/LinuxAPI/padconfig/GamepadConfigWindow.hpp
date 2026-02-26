@@ -1,15 +1,16 @@
 // GamepadConfigWindow.hpp - Linux version
 #pragma once
 
-#include "MenuWindow.hpp"
 #include "../gamepad/GamepadHandler.hpp"
 #include <map>
 #include <functional>
+#include <string>
+#include <vector>
 
 /**
  * @brief Configuration window for gamepad input mapping (Linux stub)
  */
-class GamepadConfigWindow : public MenuWindow {
+class GamepadConfigWindow {
 public:
     struct GamepadConfig {
         std::map<std::string, int> buttonMappings;
@@ -25,22 +26,37 @@ public:
 
     using ConfigCallback = std::function<void(const GamepadConfig& config, bool accepted)>;
 
-    GamepadConfigWindow(const std::string& title,
+    GamepadConfigWindow(const char* title,
                         const GamepadConfig& initialConfig,
                         ConfigCallback callback,
-                        GamepadHandler& gamepadHandler)
-        : MenuWindow("GamepadConfig", title)
-        , m_config(initialConfig)
+                        GamepadHandler& gamepadHandler,
+                        int deviceIndex = 0,
+                        const std::vector<std::string>& deviceNames = {})
+        : m_config(initialConfig)
         , m_callback(callback)
         , m_gamepadHandler(gamepadHandler)
+        , m_title(title ? title : "")
+        , m_deviceIndex(deviceIndex)
+        , m_deviceNames(deviceNames)
     {}
 
     virtual ~GamepadConfigWindow() {}
 
+    // Show the configuration dialog (stub: immediately calls callback with accepted=false)
+    bool ShowModal() {
+        if (m_callback) m_callback(m_config, false);
+        return false;
+    }
+
     const GamepadConfig& GetConfig() const { return m_config; }
+
+    void SetEnabled(bool /*enabled*/) {}
 
 private:
     GamepadConfig m_config;
     ConfigCallback m_callback;
     GamepadHandler& m_gamepadHandler;
+    std::string m_title;
+    int m_deviceIndex;
+    std::vector<std::string> m_deviceNames;
 };
