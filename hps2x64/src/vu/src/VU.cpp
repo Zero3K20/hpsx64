@@ -31,7 +31,7 @@
 // used for restarting VU Dma transfer - unless its going to check every cycle, needs to alert dma to recheck ability to transfer
 #include "PS2_Dma.h"
 
-#include "PS2_GPU.h"
+#include "PS2_Gpu.h"
 
 
 #include "VU_Recompiler.h"
@@ -443,7 +443,7 @@ static inline constexpr void init_vu_array_mask_unpack()
 
 }
 
-template<> static inline constexpr void init_vu_array_mask_unpack<0, (1 << 8)>() {}
+template<> inline constexpr void init_vu_array_mask_unpack<0, (1 << 8)>() {}
 
 
 template<const int OFFSET = 0, const int IDX = 0>
@@ -479,7 +479,7 @@ static inline constexpr void init_vu_array_execute_unpack()
 	init_vu_array_execute_unpack<OFFSET, IDX + 1>();
 }
 
-template<> static inline constexpr void init_vu_array_execute_unpack<0, (1 << 8)>() {}
+template<> inline constexpr void init_vu_array_execute_unpack<0, (1 << 8)>() {}
 
 
 VU::VU ()

@@ -10425,7 +10425,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 			e->TestReg32ImmX(RAX, 0x3);
 
 			// trigger synchronous interrupt on exception
-			e->JMP_NE((void*)r->ProcessSynchronousInterrupt2_t<Cpu::EXC_ADEL>);
+			e->JMP_NE((void*)Cpu::ProcessSynchronousInterrupt2_t<Cpu::EXC_ADEL>);
 #else
 
 			// if address exception not enabled, then need to mask the address
@@ -34499,7 +34499,7 @@ int32_t R5900::Recompiler::QFSRV ( R5900::Instruction::Format i, u32 Address )
 			{
 				/*
 				-VPSHUFB uses a control mask to rearrange bytes in each 128 - bit lane.
-				- We precompute 16 masks(for shifts 0–15), each 32 bytes int32_t.
+				- We precompute 16 masks(for shifts 0ï¿½15), each 32 bytes int32_t.
 				- For each shift amount, the mask selects the appropriate source byte or inserts 0x80 (which zeroes the byte).
 				- This gives us a full 256 - bit variable - byte left shift with zero fill
 				*/

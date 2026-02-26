@@ -26,7 +26,7 @@
 #include "VU_Execute.h"
 #include "VU_Print.h"
 #include "PS2Float.h"
-#include "PS2_GPU.h"
+#include "PS2_Gpu.h"
 
 //#include <cmath>
 #include <stdlib.h>

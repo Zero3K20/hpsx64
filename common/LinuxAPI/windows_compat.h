@@ -77,7 +77,13 @@ typedef uint64_t        UINT64_PTR;
 // These types allow Windows exception-handling code to compile on Linux
 // The actual SEH (__try/__except) blocks must be guarded with #ifdef _WIN32
 
-// CPU context stub (simplified - only fields used by R3000A)
+// M128A type for XMM registers in CONTEXT
+struct M128A {
+    uint64_t Low;
+    int64_t  High;
+};
+
+// CPU context stub (simplified - only fields used by R3000A/R5900)
 struct CONTEXT {
     uint64_t Rax;
     uint64_t Rbx;
@@ -97,6 +103,22 @@ struct CONTEXT {
     uint64_t R15;
     uint64_t Rip;
     uint64_t EFlags;
+    M128A Xmm0;
+    M128A Xmm1;
+    M128A Xmm2;
+    M128A Xmm3;
+    M128A Xmm4;
+    M128A Xmm5;
+    M128A Xmm6;
+    M128A Xmm7;
+    M128A Xmm8;
+    M128A Xmm9;
+    M128A Xmm10;
+    M128A Xmm11;
+    M128A Xmm12;
+    M128A Xmm13;
+    M128A Xmm14;
+    M128A Xmm15;
 };
 typedef CONTEXT* PCONTEXT;
 typedef CONTEXT* LPCONTEXT;
@@ -126,6 +148,20 @@ typedef _EXCEPTION_POINTERS* LPEXCEPTION_POINTERS;
 #define STATUS_ACCESS_VIOLATION      ((unsigned int)0xC0000005)
 #define EXCEPTION_INT_DIVIDE_BY_ZERO ((unsigned int)0xC0000094)
 #define EXCEPTION_INT_OVERFLOW       ((unsigned int)0xC0000095)
+#define STATUS_FLOAT_INVALID_OPERATION ((unsigned int)0xC0000090)
+#define STATUS_FLOAT_OVERFLOW          ((unsigned int)0xC0000091)
+#define STATUS_FLOAT_UNDERFLOW         ((unsigned int)0xC0000093)
+
+// ---- FPU control stubs (MSVC _controlfp equivalents) ----
+#ifndef _MCW_DN
+#define _MCW_DN   0x03000000
+#define _DN_FLUSH 0x01000000
+#define _MCW_RC   0x00000300
+#define _RC_CHOP  0x00000300
+#define _MCW_EM   0x0000003f
+#endif
+inline unsigned int _controlfp(unsigned int /*newval*/, unsigned int /*mask*/) { return 0; }
+inline unsigned int _clearfp() { return 0; }
 
 // __try/__except is a MSVC-specific feature; on Linux, use a no-op wrapper
 // The code using __try/__except MUST be guarded with #ifdef _WIN32
@@ -182,6 +218,31 @@ inline BOOL GetConsoleScreenBufferInfo(HANDLE /*h*/, CONSOLE_SCREEN_BUFFER_INFO*
     return TRUE;
 }
 inline DWORD GetLastError() { return 0; }
+
+// ---- Windows Multimedia Audio stubs (winmm/mmsystem equivalents) ----
+typedef void* HWAVEOUT;
+typedef void* HWAVEIN;
+
+struct WAVEFORMATEX {
+    WORD  wFormatTag;
+    WORD  nChannels;
+    DWORD nSamplesPerSec;
+    DWORD nAvgBytesPerSec;
+    WORD  nBlockAlign;
+    WORD  wBitsPerSample;
+    WORD  cbSize;
+};
+
+struct WAVEHDR {
+    char*  lpData;
+    DWORD  dwBufferLength;
+    DWORD  dwBytesRecorded;
+    DWORD* dwUser;
+    DWORD  dwFlags;
+    DWORD  dwLoops;
+    WAVEHDR* lpNext;
+    DWORD* reserved;
+};
 
 // ---- Timer API stubs (winmm.lib equivalents) ----
 #define TIMERR_NOERROR  0

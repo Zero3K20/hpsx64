@@ -319,7 +319,7 @@ static inline constexpr void init_ps2_array_line_lutx4()
 	init_ps2_array_line_lutx4<OFFSET, IDX + 1>();
 }
 
-template<> static inline constexpr void init_ps2_array_line_lutx4<0,(1 << 9)>(){}
+template<> inline constexpr void init_ps2_array_line_lutx4<0,(1 << 9)>(){}
 
 
 //template<const int IDX = 0>
@@ -358,7 +358,7 @@ static inline constexpr void init_ps2_array_sprite_lutx4()
 	init_ps2_array_sprite_lutx4<OFFSET, IDX + 1>();
 }
 
-template<> static inline constexpr void init_ps2_array_sprite_lutx4<0,(1 << 9)>(){}
+template<> inline constexpr void init_ps2_array_sprite_lutx4<0,(1 << 9)>(){}
 
 
 template<const int OFFSET, const int IDX = 0>
@@ -418,8 +418,8 @@ static inline constexpr void init_ps2_array_triangle_lutx4()
 	init_ps2_array_triangle_lutx4<OFFSET, IDX + 1>();
 }
 
-template<> static inline constexpr void init_ps2_array_triangle_lutx4<0, (1 << 10)>(){}
-template<> static inline constexpr void init_ps2_array_triangle_lutx4<1, (1 << 10)>(){}
+template<> inline constexpr void init_ps2_array_triangle_lutx4<0, (1 << 10)>(){}
+template<> inline constexpr void init_ps2_array_triangle_lutx4<1, (1 << 10)>(){}
 
 
 

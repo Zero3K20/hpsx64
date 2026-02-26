@@ -18,8 +18,8 @@
 
 
 #include "PS2_SIF.h"
-#include "PS1_DMA.h"
-#include "PS2_DMA.h"
+#include "PS1_Dma.h"
+#include "PS2_Dma.h"
 
 #include "PS1_Intc.h"
 
