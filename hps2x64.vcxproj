@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug2-clang|Win32">
+      <Configuration>Debug2-clang</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug2-clang|x64">
+      <Configuration>Debug2-clang</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2-clang|Win32">
+      <Configuration>Release2-clang</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2-clang|x64">
+      <Configuration>Release2-clang</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2-profile|Win32">
+      <Configuration>Release2-profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release2-profile|x64">
+      <Configuration>Release2-profile</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{113C2909-0EE1-41DF-98AF-2F3C17A66557}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>false</EnableUnitySupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>false</EnableUnitySupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+    <EnableUnitySupport>false</EnableUnitySupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)hps2x64\src\vu\src\recompile;$(SolutionDir)hps2x64\src\vu\src\print;$(SolutionDir)hps2x64\src\vu\src\lookup;$(SolutionDir)hps2x64\src\vu\src\execute;$(SolutionDir)hps2x64\src\vu\src;$(SolutionDir)hps2x64\src\r5900\src\recompile;$(SolutionDir)hps2x64\src\r5900\src\print;$(SolutionDir)hps2x64\src\r5900\src\lookup;$(SolutionDir)hps2x64\src\r5900\src\execute;$(SolutionDir)hps2x64\src\r5900\src\cache;$(SolutionDir)hps2x64\src\r5900\src;$(SolutionDir)hps2x64\src\timer\src;$(SolutionDir)hps2x64\src\system\src;$(SolutionDir)hps2x64\src\sio\src;$(SolutionDir)hps2x64\src\sif\src;$(SolutionDir)hps2x64\src\ipu\src\mpeg2lib;$(SolutionDir)hps2x64\src\ipu\src;$(SolutionDir)hps2x64\src\intc\src;$(SolutionDir)hps2x64\src\hps2x64\src;$(SolutionDir)hps2x64\src\gpu\src;$(SolutionDir)hps2x64\src\dma\src;$(SolutionDir)hps1x64\src\usb\src;$(SolutionDir)hps1x64\src\spu\src\spu2;$(SolutionDir)hps2x64\src\databus\src;$(SolutionDir)hps1x64\src\r3000a\src;$(SolutionDir)common\config\src;$(SolutionDir)hps1x64\src\spu\src;$(SolutionDir)hps1x64\src\timer\src;$(SolutionDir)hps1x64\src\system\src;$(SolutionDir)hps1x64\src\sio\src;$(SolutionDir)hps1x64\src\r3000a\src\recompile;$(SolutionDir)hps1x64\src\r3000a\src\print;$(SolutionDir)hps1x64\src\r3000a\src\lookup;$(SolutionDir)hps1x64\src\r3000a\src\execute;$(SolutionDir)hps1x64\src\r3000a\src\COP2;$(SolutionDir)hps1x64\src\r3000a\src\cache;$(SolutionDir)hps1x64\src\pio\src;$(SolutionDir)hps1x64\src\mdec\src;$(SolutionDir)hps1x64\src\intc\src;$(SolutionDir)hps1x64\src\hps1x64\src;$(SolutionDir)hps1x64\src\gpu\src;$(SolutionDir)hps1x64\src\dma\src;$(SolutionDir)hps1x64\src\databus\src;$(SolutionDir)hps1x64\src\cdvd\src;$(SolutionDir)hps1x64\src\cd\src;$(SolutionDir)common\StringUtilities;$(SolutionDir)common\WindowsAPI\WinFile\src;$(SolutionDir)common\WindowsAPI\InputBox\src;$(SolutionDir)common\WindowsAPI\InfiniteListView\src;$(SolutionDir)common\WindowsAPI\GUIHandler\src;$(SolutionDir)common\WindowsAPI\DisassemblyViewer\src;$(SolutionDir)common\WindowsAPI\DebugValueList\src;$(SolutionDir)common\WindowsAPI\DebugMemoryViewer\src;$(SolutionDir)common\WindowsAPI\BreakpointWindow\src;$(SolutionDir)common\x64Encoder\src;$(SolutionDir)common\DiskImage\dvd\src;$(SolutionDir)common\DiskImage\cd\src;$(SolutionDir)common\debug\src;$(SolutionDir)common;$(SolutionDir)common\breakpoint\src;$(SolutionDir)common\DiskImage\libchd\libchdr;$(SolutionDir)\common\win32\audio;$(SolutionDir)\common\win32\gui;$(SolutionDir)\common\win32\gamepad;$(SolutionDir)\common\win32\recompile;$(SolutionDir)\common\win32\padconfig;$(SolutionDir)\common\win32\capture_console;$(SolutionDir)\common\x64Assembler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG_VERSION_;ENABLE_GUI_DEBUGGER;PS2_COMPILE;NOMINMAX;YAML_CPP_STATIC_DEFINE;GLEW_STATIC;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <AssemblyDebug>true</AssemblyDebug>
+      <Profile>true</Profile>
+      <BaseAddress>0x40000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug2-clang|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)hps2x64\src\vu\src\recompile;$(SolutionDir)hps2x64\src\vu\src\print;$(SolutionDir)hps2x64\src\vu\src\lookup;$(SolutionDir)hps2x64\src\vu\src\execute;$(SolutionDir)hps2x64\src\vu\src;$(SolutionDir)hps2x64\src\r5900\src\recompile;$(SolutionDir)hps2x64\src\r5900\src\print;$(SolutionDir)hps2x64\src\r5900\src\lookup;$(SolutionDir)hps2x64\src\r5900\src\execute;$(SolutionDir)hps2x64\src\r5900\src\cache;$(SolutionDir)hps2x64\src\r5900\src;$(SolutionDir)hps2x64\src\timer\src;$(SolutionDir)hps2x64\src\system\src;$(SolutionDir)hps2x64\src\sio\src;$(SolutionDir)hps2x64\src\sif\src;$(SolutionDir)hps2x64\src\ipu\src\mpeg2lib;$(SolutionDir)hps2x64\src\ipu\src;$(SolutionDir)hps2x64\src\intc\src;$(SolutionDir)hps2x64\src\hps2x64\src;$(SolutionDir)hps2x64\src\gpu\src;$(SolutionDir)hps2x64\src\dma\src;$(SolutionDir)hps1x64\src\usb\src;$(SolutionDir)hps1x64\src\spu\src\spu2;$(SolutionDir)hps2x64\src\databus\src;$(SolutionDir)hps1x64\src\r3000a\src;$(SolutionDir)common\config\src;$(SolutionDir)hps1x64\src\spu\src;$(SolutionDir)hps1x64\src\timer\src;$(SolutionDir)hps1x64\src\system\src;$(SolutionDir)hps1x64\src\sio\src;$(SolutionDir)hps1x64\src\r3000a\src\recompile;$(SolutionDir)hps1x64\src\r3000a\src\print;$(SolutionDir)hps1x64\src\r3000a\src\lookup;$(SolutionDir)hps1x64\src\r3000a\src\execute;$(SolutionDir)hps1x64\src\r3000a\src\COP2;$(SolutionDir)hps1x64\src\r3000a\src\cache;$(SolutionDir)hps1x64\src\pio\src;$(SolutionDir)hps1x64\src\mdec\src;$(SolutionDir)hps1x64\src\intc\src;$(SolutionDir)hps1x64\src\hps1x64\src;$(SolutionDir)hps1x64\src\gpu\src;$(SolutionDir)hps1x64\src\dma\src;$(SolutionDir)hps1x64\src\databus\src;$(SolutionDir)hps1x64\src\cdvd\src;$(SolutionDir)hps1x64\src\cd\src;$(SolutionDir)common\StringUtilities;$(SolutionDir)common\WindowsAPI\WinFile\src;$(SolutionDir)common\WindowsAPI\InputBox\src;$(SolutionDir)common\WindowsAPI\InfiniteListView\src;$(SolutionDir)common\WindowsAPI\GUIHandler\src;$(SolutionDir)common\WindowsAPI\DisassemblyViewer\src;$(SolutionDir)common\WindowsAPI\DebugValueList\src;$(SolutionDir)common\WindowsAPI\DebugMemoryViewer\src;$(SolutionDir)common\WindowsAPI\BreakpointWindow\src;$(SolutionDir)common\x64Encoder\src;$(SolutionDir)common\DiskImage\dvd\src;$(SolutionDir)common\DiskImage\cd\src;$(SolutionDir)common\debug\src;$(SolutionDir)common;$(SolutionDir)common\breakpoint\src;$(SolutionDir)common\DiskImage\libchd\libchdr;$(SolutionDir)\common\win32\audio;$(SolutionDir)\common\win32\gui;$(SolutionDir)\common\win32\gamepad;$(SolutionDir)\common\win32\recompile;$(SolutionDir)\common\win32\padconfig;$(SolutionDir)\common\win32\capture_console;$(SolutionDir)\common\x64Assembler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG_VERSION_;ENABLE_GUI_DEBUGGER;PS2_COMPILE;NOMINMAX;YAML_CPP_STATIC_DEFINE;GLEW_STATIC;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <AssemblyDebug>true</AssemblyDebug>
+      <BaseAddress>0x40000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)hps2x64\src\vu\src\recompile;$(SolutionDir)hps2x64\src\vu\src\print;$(SolutionDir)hps2x64\src\vu\src\lookup;$(SolutionDir)hps2x64\src\vu\src\execute;$(SolutionDir)hps2x64\src\vu\src;$(SolutionDir)hps2x64\src\r5900\src\recompile;$(SolutionDir)hps2x64\src\r5900\src\print;$(SolutionDir)hps2x64\src\r5900\src\lookup;$(SolutionDir)hps2x64\src\r5900\src\execute;$(SolutionDir)hps2x64\src\r5900\src\cache;$(SolutionDir)hps2x64\src\r5900\src;$(SolutionDir)hps2x64\src\timer\src;$(SolutionDir)hps2x64\src\system\src;$(SolutionDir)hps2x64\src\sio\src;$(SolutionDir)hps2x64\src\sif\src;$(SolutionDir)hps2x64\src\ipu\src\mpeg2lib;$(SolutionDir)hps2x64\src\ipu\src;$(SolutionDir)hps2x64\src\intc\src;$(SolutionDir)hps2x64\src\hps2x64\src;$(SolutionDir)hps2x64\src\gpu\src;$(SolutionDir)hps2x64\src\dma\src;$(SolutionDir)hps1x64\src\usb\src;$(SolutionDir)hps1x64\src\spu\src\spu2;$(SolutionDir)hps2x64\src\databus\src;$(SolutionDir)hps1x64\src\r3000a\src;$(SolutionDir)common\config\src;$(SolutionDir)hps1x64\src\spu\src;$(SolutionDir)hps1x64\src\timer\src;$(SolutionDir)hps1x64\src\system\src;$(SolutionDir)hps1x64\src\sio\src;$(SolutionDir)hps1x64\src\r3000a\src\recompile;$(SolutionDir)hps1x64\src\r3000a\src\print;$(SolutionDir)hps1x64\src\r3000a\src\lookup;$(SolutionDir)hps1x64\src\r3000a\src\execute;$(SolutionDir)hps1x64\src\r3000a\src\COP2;$(SolutionDir)hps1x64\src\r3000a\src\cache;$(SolutionDir)hps1x64\src\pio\src;$(SolutionDir)hps1x64\src\mdec\src;$(SolutionDir)hps1x64\src\intc\src;$(SolutionDir)hps1x64\src\hps1x64\src;$(SolutionDir)hps1x64\src\gpu\src;$(SolutionDir)hps1x64\src\dma\src;$(SolutionDir)hps1x64\src\databus\src;$(SolutionDir)hps1x64\src\cdvd\src;$(SolutionDir)hps1x64\src\cd\src;$(SolutionDir)common\StringUtilities;$(SolutionDir)common\WindowsAPI\WinFile\src;$(SolutionDir)common\WindowsAPI\InputBox\src;$(SolutionDir)common\WindowsAPI\InfiniteListView\src;$(SolutionDir)common\WindowsAPI\GUIHandler\src;$(SolutionDir)common\WindowsAPI\DisassemblyViewer\src;$(SolutionDir)common\WindowsAPI\DebugValueList\src;$(SolutionDir)common\WindowsAPI\DebugMemoryViewer\src;$(SolutionDir)common\WindowsAPI\BreakpointWindow\src;$(SolutionDir)common\x64Encoder\src;$(SolutionDir)common\DiskImage\dvd\src;$(SolutionDir)common\DiskImage\cd\src;$(SolutionDir)common\debug\src;$(SolutionDir)common;$(SolutionDir)common\breakpoint\src;$(SolutionDir)common\DiskImage\libchd\libchdr;$(SolutionDir)\common\win32\audio;$(SolutionDir)\common\win32\gui;$(SolutionDir)\common\win32\gamepad;$(SolutionDir)\common\win32\recompile;$(SolutionDir)\common\win32\padconfig;$(SolutionDir)\common\win32\capture_console;$(SolutionDir)\common\x64Assembler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ENABLE_GUI_DEBUGGER;PS2_COMPILE;NOMINMAX;YAML_CPP_STATIC_DEFINE;GLEW_STATIC;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <ForceConformanceInForLoopScope>
+      </ForceConformanceInForLoopScope>
+      <CallingConvention>FastCall</CallingConvention>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <StringPooling>true</StringPooling>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>false</SDLCheck>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <EnableModules>false</EnableModules>
+      <BuildStlModules>true</BuildStlModules>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Link>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <Profile>false</Profile>
+      <BaseAddress>0x40000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2-profile|x64'">
+    <ClCompile>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)hps2x64\src\vu\src\recompile;$(SolutionDir)hps2x64\src\vu\src\print;$(SolutionDir)hps2x64\src\vu\src\lookup;$(SolutionDir)hps2x64\src\vu\src\execute;$(SolutionDir)hps2x64\src\vu\src;$(SolutionDir)hps2x64\src\r5900\src\recompile;$(SolutionDir)hps2x64\src\r5900\src\print;$(SolutionDir)hps2x64\src\r5900\src\lookup;$(SolutionDir)hps2x64\src\r5900\src\execute;$(SolutionDir)hps2x64\src\r5900\src\cache;$(SolutionDir)hps2x64\src\r5900\src;$(SolutionDir)hps2x64\src\timer\src;$(SolutionDir)hps2x64\src\system\src;$(SolutionDir)hps2x64\src\sio\src;$(SolutionDir)hps2x64\src\sif\src;$(SolutionDir)hps2x64\src\ipu\src\mpeg2lib;$(SolutionDir)hps2x64\src\ipu\src;$(SolutionDir)hps2x64\src\intc\src;$(SolutionDir)hps2x64\src\hps2x64\src;$(SolutionDir)hps2x64\src\gpu\src;$(SolutionDir)hps2x64\src\dma\src;$(SolutionDir)hps1x64\src\usb\src;$(SolutionDir)hps1x64\src\spu\src\spu2;$(SolutionDir)hps2x64\src\databus\src;$(SolutionDir)hps1x64\src\r3000a\src;$(SolutionDir)common\config\src;$(SolutionDir)hps1x64\src\spu\src;$(SolutionDir)hps1x64\src\timer\src;$(SolutionDir)hps1x64\src\system\src;$(SolutionDir)hps1x64\src\sio\src;$(SolutionDir)hps1x64\src\r3000a\src\recompile;$(SolutionDir)hps1x64\src\r3000a\src\print;$(SolutionDir)hps1x64\src\r3000a\src\lookup;$(SolutionDir)hps1x64\src\r3000a\src\execute;$(SolutionDir)hps1x64\src\r3000a\src\COP2;$(SolutionDir)hps1x64\src\r3000a\src\cache;$(SolutionDir)hps1x64\src\pio\src;$(SolutionDir)hps1x64\src\mdec\src;$(SolutionDir)hps1x64\src\intc\src;$(SolutionDir)hps1x64\src\hps1x64\src;$(SolutionDir)hps1x64\src\gpu\src;$(SolutionDir)hps1x64\src\dma\src;$(SolutionDir)hps1x64\src\databus\src;$(SolutionDir)hps1x64\src\cdvd\src;$(SolutionDir)hps1x64\src\cd\src;$(SolutionDir)common\StringUtilities;$(SolutionDir)common\WindowsAPI\WinFile\src;$(SolutionDir)common\WindowsAPI\InputBox\src;$(SolutionDir)common\WindowsAPI\InfiniteListView\src;$(SolutionDir)common\WindowsAPI\GUIHandler\src;$(SolutionDir)common\WindowsAPI\DisassemblyViewer\src;$(SolutionDir)common\WindowsAPI\DebugValueList\src;$(SolutionDir)common\WindowsAPI\DebugMemoryViewer\src;$(SolutionDir)common\WindowsAPI\BreakpointWindow\src;$(SolutionDir)common\x64Encoder\src;$(SolutionDir)common\DiskImage\dvd\src;$(SolutionDir)common\DiskImage\cd\src;$(SolutionDir)common\debug\src;$(SolutionDir)common;$(SolutionDir)common\breakpoint\src;$(SolutionDir)common\DiskImage\libchd\libchdr;$(SolutionDir)\common\win32\audio;$(SolutionDir)\common\win32\gui;$(SolutionDir)\common\win32\gamepad;$(SolutionDir)\common\win32\recompile;$(SolutionDir)\common\win32\padconfig;$(SolutionDir)\common\win32\capture_console;$(SolutionDir)\common\x64Assembler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ENABLE_GUI_DEBUGGER;PS2_COMPILE;NOMINMAX;YAML_CPP_STATIC_DEFINE;GLEW_STATIC;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <ForceConformanceInForLoopScope>
+      </ForceConformanceInForLoopScope>
+      <CallingConvention>FastCall</CallingConvention>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <StringPooling>true</StringPooling>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>false</SDLCheck>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <EnableModules>false</EnableModules>
+      <BuildStlModules>true</BuildStlModules>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Link>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <BaseAddress>0x40000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2-clang|x64'">
+    <ClCompile>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalIncludeDirectories>$(SolutionDir)hps2x64\src\vu\src\recompile;$(SolutionDir)hps2x64\src\vu\src\print;$(SolutionDir)hps2x64\src\vu\src\lookup;$(SolutionDir)hps2x64\src\vu\src\execute;$(SolutionDir)hps2x64\src\vu\src;$(SolutionDir)hps2x64\src\r5900\src\recompile;$(SolutionDir)hps2x64\src\r5900\src\print;$(SolutionDir)hps2x64\src\r5900\src\lookup;$(SolutionDir)hps2x64\src\r5900\src\execute;$(SolutionDir)hps2x64\src\r5900\src\cache;$(SolutionDir)hps2x64\src\r5900\src;$(SolutionDir)hps2x64\src\timer\src;$(SolutionDir)hps2x64\src\system\src;$(SolutionDir)hps2x64\src\sio\src;$(SolutionDir)hps2x64\src\sif\src;$(SolutionDir)hps2x64\src\ipu\src\mpeg2lib;$(SolutionDir)hps2x64\src\ipu\src;$(SolutionDir)hps2x64\src\intc\src;$(SolutionDir)hps2x64\src\hps2x64\src;$(SolutionDir)hps2x64\src\gpu\src;$(SolutionDir)hps2x64\src\dma\src;$(SolutionDir)hps1x64\src\usb\src;$(SolutionDir)hps1x64\src\spu\src\spu2;$(SolutionDir)hps2x64\src\databus\src;$(SolutionDir)hps1x64\src\r3000a\src;$(SolutionDir)common\config\src;$(SolutionDir)hps1x64\src\spu\src;$(SolutionDir)hps1x64\src\timer\src;$(SolutionDir)hps1x64\src\system\src;$(SolutionDir)hps1x64\src\sio\src;$(SolutionDir)hps1x64\src\r3000a\src\recompile;$(SolutionDir)hps1x64\src\r3000a\src\print;$(SolutionDir)hps1x64\src\r3000a\src\lookup;$(SolutionDir)hps1x64\src\r3000a\src\execute;$(SolutionDir)hps1x64\src\r3000a\src\COP2;$(SolutionDir)hps1x64\src\r3000a\src\cache;$(SolutionDir)hps1x64\src\pio\src;$(SolutionDir)hps1x64\src\mdec\src;$(SolutionDir)hps1x64\src\intc\src;$(SolutionDir)hps1x64\src\hps1x64\src;$(SolutionDir)hps1x64\src\gpu\src;$(SolutionDir)hps1x64\src\dma\src;$(SolutionDir)hps1x64\src\databus\src;$(SolutionDir)hps1x64\src\cdvd\src;$(SolutionDir)hps1x64\src\cd\src;$(SolutionDir)common\StringUtilities;$(SolutionDir)common\WindowsAPI\WinFile\src;$(SolutionDir)common\WindowsAPI\InputBox\src;$(SolutionDir)common\WindowsAPI\InfiniteListView\src;$(SolutionDir)common\WindowsAPI\GUIHandler\src;$(SolutionDir)common\WindowsAPI\DisassemblyViewer\src;$(SolutionDir)common\WindowsAPI\DebugValueList\src;$(SolutionDir)common\WindowsAPI\DebugMemoryViewer\src;$(SolutionDir)common\WindowsAPI\BreakpointWindow\src;$(SolutionDir)common\x64Encoder\src;$(SolutionDir)common\DiskImage\dvd\src;$(SolutionDir)common\DiskImage\cd\src;$(SolutionDir)common\debug\src;$(SolutionDir)common;$(SolutionDir)common\breakpoint\src;$(SolutionDir)common\DiskImage\libchd\libchdr;$(SolutionDir)\common\win32\audio;$(SolutionDir)\common\win32\gui;$(SolutionDir)\common\win32\gamepad;$(SolutionDir)\common\win32\recompile;$(SolutionDir)\common\win32\padconfig;$(SolutionDir)\common\win32\capture_console;$(SolutionDir)\common\x64Assembler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ENABLE_GUI_DEBUGGER;PS2_COMPILE;NOMINMAX;YAML_CPP_STATIC_DEFINE;GLEW_STATIC;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <OmitFramePointers>true</OmitFramePointers>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <ForceConformanceInForLoopScope>
+      </ForceConformanceInForLoopScope>
+      <CallingConvention>FastCall</CallingConvention>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <StringPooling>true</StringPooling>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>false</SDLCheck>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <EnableModules>false</EnableModules>
+      <BuildStlModules>false</BuildStlModules>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions>/clang:-Ofast %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Link>
+      <LargeAddressAware>true</LargeAddressAware>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+      <BaseAddress>0x40000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <FixedBaseAddress>true</FixedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="common\breakpoint\src\breakpoint.cpp" />
+    <ClCompile Include="common\debug\src\Debug.cpp" />
+    <ClCompile Include="common\diskimage\cd\src\cdimage.cpp" />
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_bitstream.c" />
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_cdrom.c" />
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_chd.c" />
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_flac.c" />
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_huffman.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zAlloc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zArcIn.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zBuf.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zBuf2.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zCrc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zCrcOpt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zDec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zFile.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zStream.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Aes.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\AesOpt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Alloc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bcj2.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bcj2Enc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bra.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bra86.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\BraIA64.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\CpuArch.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Delta.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\DllSecur.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzFind.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzFindMt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzFindOpt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Dec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2DecMt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Enc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma86Dec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma86Enc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzmaDec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzmaEnc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzmaLib.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\MtCoder.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\MtDec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7Dec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7Enc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Sha256.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Sha256Opt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Sort.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\SwapBytes.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Threads.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Xz.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzCrc64.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzCrc64Opt.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzDec.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzEnc.c" />
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzIn.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\adler32.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\compress.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\crc32.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\deflate.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzclose.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzlib.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzread.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzwrite.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\infback.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\inffast.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\inflate.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\inftrees.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\trees.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\uncompr.c" />
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\zutil.c" />
+    <ClCompile Include="common\guicon.cpp" />
+    <ClCompile Include="common\memmgmt.cpp" />
+    <ClCompile Include="common\stringutilities\StringUtils.cpp" />
+    <ClCompile Include="common\win32\capture_console\capture_console.cpp" />
+    <ClCompile Include="common\win32\gamepad\GamepadHandler.cpp" />
+    <ClCompile Include="common\win32\gui\ControlWindow.cpp" />
+    <ClCompile Include="common\win32\gui\MenuWindow.cpp" />
+    <ClCompile Include="common\win32\gui\OpenGLWindow.cpp" />
+    <ClCompile Include="common\win32\gui\Window.cpp" />
+    <ClCompile Include="common\win32\padconfig\GamepadConfigWindow.cpp" />
+    <ClCompile Include="common\win32\recompile\RecompilerBackend.cpp" />
+    <ClCompile Include="common\windowsapi\breakpointwindow\src\BreakpointWindow.cpp" />
+    <ClCompile Include="common\windowsapi\debugmemoryviewer\src\DebugMemoryViewer.cpp" />
+    <ClCompile Include="common\windowsapi\debugvaluelist\src\DebugValueList.cpp" />
+    <ClCompile Include="common\windowsapi\disassemblyviewer\src\DisassemblyViewer.cpp" />
+    <ClCompile Include="common\windowsapi\guihandler\src\MultiThread.cpp" />
+    <ClCompile Include="common\windowsapi\guihandler\src\WinApiHandler.cpp" />
+    <ClCompile Include="common\windowsapi\infinitelistview\src\InfiniteListView.cpp" />
+    <ClCompile Include="common\windowsapi\inputbox\src\InputBox.cpp" />
+    <ClCompile Include="common\windowsapi\winfile\src\WinFile.cpp" />
+    <ClCompile Include="common\x64Assembler\x64_assembler.cpp" />
+    <ClCompile Include="common\x64encoder\src\x64Encoder.cpp" />
+    <ClCompile Include="hps1x64\src\cdvd\src\CDvd.cpp" />
+    <ClCompile Include="hps1x64\src\cd\src\PS1_CD.cpp" />
+    <ClCompile Include="hps1x64\src\databus\src\PS1DataBus.cpp" />
+    <ClCompile Include="hps1x64\src\dma\src\PS1_Dma.cpp" />
+    <ClCompile Include="hps1x64\src\gpu\src\PS1_Gpu.cpp" />
+    <ClCompile Include="hps1x64\src\intc\src\PS1_Intc.cpp" />
+    <ClCompile Include="hps1x64\src\mdec\src\PS1_MDEC.cpp" />
+    <ClCompile Include="hps1x64\src\pio\src\PS1_PIO.cpp" />
+    <ClCompile Include="hps1x64\src\r3000a\src\cop2\R3000A_COP2.cpp" />
+    <ClCompile Include="hps1x64\src\r3000a\src\execute\R3000A_Execute.cpp" />
+    <ClCompile Include="hps1x64\src\r3000a\src\lookup\R3000A_Lookup.cpp" />
+    <ClCompile Include="hps1x64\src\r3000a\src\print\R3000ADebugPrint.cpp" />
+    <ClCompile Include="hps1x64\src\r3000a\src\R3000A.cpp" />
+    <ClCompile Include="hps1x64\src\r3000a\src\recompile\R3000A_Recompiler.cpp" />
+    <ClCompile Include="hps1x64\src\sio\src\PS1_SIO.cpp" />
+    <ClCompile Include="hps1x64\src\spu\src\adpcm.cpp" />
+    <ClCompile Include="hps1x64\src\spu\src\gx.cpp" />
+    <ClCompile Include="hps1x64\src\spu\src\PS1_SPU.cpp" />
+    <ClCompile Include="hps1x64\src\spu\src\spu2\gx2.cpp" />
+    <ClCompile Include="hps1x64\src\spu\src\spu2\PS1_SPU2.cpp" />
+    <ClCompile Include="hps1x64\src\system\src\ps1_system.cpp" />
+    <ClCompile Include="hps1x64\src\timer\src\PS1_Timer.cpp" />
+    <ClCompile Include="hps1x64\src\usb\src\PS1_USB.cpp" />
+    <ClCompile Include="hps2x64\src\databus\src\PS2DataBus.cpp" />
+    <ClCompile Include="hps2x64\src\dma\src\PS2_Dma.cpp" />
+    <ClCompile Include="hps2x64\src\gpu\src\PS2_Gpu.cpp" />
+    <ClCompile Include="hps2x64\src\hps2x64\src\hps2x64.cpp" />
+    <ClCompile Include="hps2x64\src\intc\src\PS2_Intc.cpp" />
+    <ClCompile Include="hps2x64\src\ipu\src\mpeg2lib\Idct.cpp" />
+    <ClCompile Include="hps2x64\src\ipu\src\mpeg2lib\Mpeg.cpp" />
+    <ClCompile Include="hps2x64\src\ipu\src\PS2_IPU.cpp" />
+    <ClCompile Include="hps2x64\src\r5900\src\execute\R5900_Execute.cpp" />
+    <ClCompile Include="hps2x64\src\r5900\src\lookup\R5900_Lookup.cpp" />
+    <ClCompile Include="hps2x64\src\r5900\src\print\R5900_Print.cpp" />
+    <ClCompile Include="hps2x64\src\r5900\src\R5900.cpp" />
+    <ClCompile Include="hps2x64\src\r5900\src\recompile\R5900_Recompiler.cpp" />
+    <ClCompile Include="hps2x64\src\sif\src\PS2_SIF.cpp" />
+    <ClCompile Include="hps2x64\src\sio\src\PS2_SIO.cpp" />
+    <ClCompile Include="hps2x64\src\system\src\ps2_system.cpp" />
+    <ClCompile Include="hps2x64\src\timer\src\PS2_Timer.cpp" />
+    <ClCompile Include="hps2x64\src\vu\src\execute\VU_Execute.cpp" />
+    <ClCompile Include="hps2x64\src\vu\src\lookup\VU_Lookup.cpp" />
+    <ClCompile Include="hps2x64\src\vu\src\print\VU_Print.cpp" />
+    <ClCompile Include="hps2x64\src\vu\src\recompile\VU_Recompiler.cpp" />
+    <ClCompile Include="hps2x64\src\vu\src\vu assembler\src\VuAssembler.cpp" />
+    <ClCompile Include="hps2x64\src\vu\src\VU.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\breakpoint\src\breakpoint.h" />
+    <ClInclude Include="common\debug\src\Debug.h" />
+    <ClInclude Include="common\diskimage\cd\src\cdimage.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\bitstream.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\cdrom.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\chd.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\chdconfig.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\coretypes.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\dr_flac.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\flac.h" />
+    <ClInclude Include="common\DiskImage\libchd\libchdr\huffman.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7z.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zAlloc.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zBuf.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zCrc.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zFile.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zTypes.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zVersion.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zWindows.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Aes.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Alloc.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Bcj2.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Bra.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Compiler.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\CpuArch.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Delta.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\DllSecur.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzFind.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzFindMt.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzHash.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Dec.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2DecMt.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Enc.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma86.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzmaDec.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzmaEnc.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzmaLib.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\MtCoder.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\MtDec.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Precomp.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\RotateDefs.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Sha256.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Sort.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\SwapBytes.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Threads.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Xz.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\XzCrc64.h" />
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\XzEnc.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\crc32.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\deflate.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\gzguts.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inffast.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inffixed.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inflate.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inftrees.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\trees.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\zconf.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\zlib.h" />
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\zutil.h" />
+    <ClInclude Include="common\GeneralEmuDataStructures.h" />
+    <ClInclude Include="common\GNUAsmUtility_x64.h" />
+    <ClInclude Include="common\guicon.h" />
+    <ClInclude Include="common\json.hpp" />
+    <ClInclude Include="common\LowPassFilter.h" />
+    <ClInclude Include="common\memmgmt.h" />
+    <ClInclude Include="common\MipsOpcode.h" />
+    <ClInclude Include="common\PS2Float.h" />
+    <ClInclude Include="common\Reciprocal.h" />
+    <ClInclude Include="common\stringutilities\GeneralUtilities.h" />
+    <ClInclude Include="common\stringutilities\StringUtils.h" />
+    <ClInclude Include="common\types.h" />
+    <ClInclude Include="common\win32\capture_console\capture_console.h" />
+    <ClInclude Include="common\win32\gamepad\GamepadHandler.hpp" />
+    <ClInclude Include="common\win32\gui\ControlWindow.hpp" />
+    <ClInclude Include="common\win32\gui\MenuWindow.hpp" />
+    <ClInclude Include="common\win32\gui\OpenGLWindow.hpp" />
+    <ClInclude Include="common\win32\gui\Window.hpp" />
+    <ClInclude Include="common\win32\padconfig\GamepadConfigWindow.hpp" />
+    <ClInclude Include="common\win32\recompile\RecompilerBackend.h" />
+    <ClInclude Include="common\windowsapi\breakpointwindow\src\BreakpointWindow.h" />
+    <ClInclude Include="common\windowsapi\debugmemoryviewer\src\DebugMemoryViewer.h" />
+    <ClInclude Include="common\windowsapi\debugvaluelist\src\DebugValueList.h" />
+    <ClInclude Include="common\windowsapi\disassemblyviewer\src\DisassemblyViewer.h" />
+    <ClInclude Include="common\windowsapi\guihandler\src\GNUThreading_x64.h" />
+    <ClInclude Include="common\windowsapi\guihandler\src\MultiThread.h" />
+    <ClInclude Include="common\windowsapi\guihandler\src\MultithreadComm.h" />
+    <ClInclude Include="common\windowsapi\guihandler\src\WinApiHandler.h" />
+    <ClInclude Include="common\windowsapi\infinitelistview\src\InfiniteListView.h" />
+    <ClInclude Include="common\windowsapi\inputbox\src\InputBox.h" />
+    <ClInclude Include="common\windowsapi\winfile\src\WinFile.h" />
+    <ClInclude Include="common\x64Assembler\x64_assembler.h" />
+    <ClInclude Include="common\x64encoder\src\x64Encoder.h" />
+    <ClInclude Include="common\x64encoder\src\x64Instructions.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\anchor.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\binary.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\contrib\anchordict.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\contrib\graphbuilder.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\depthguard.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\dll.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitfromevents.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitter.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitterdef.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\emittermanip.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitterstyle.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\eventhandler.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\exceptions.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\fptostring.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\mark.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\convert.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\impl.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\iterator.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\iterator_fwd.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\memory.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node_data.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node_iterator.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node_ref.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\emit.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\impl.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\iterator.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\node.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\parse.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\ptr.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\type.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\noexcept.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\null.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\ostream_wrapper.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\parser.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\stlemitter.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\traits.h" />
+    <ClInclude Include="common\yaml\include\yaml-cpp\yaml.h" />
+    <ClInclude Include="hps1x64\src\cdvd\src\CDvd.h" />
+    <ClInclude Include="hps1x64\src\cd\src\PS1_CD.h" />
+    <ClInclude Include="hps1x64\src\databus\src\PS1DataBus.h" />
+    <ClInclude Include="hps1x64\src\dma\src\PS1_Dma.h" />
+    <ClInclude Include="hps1x64\src\gpu\src\PS1_Gpu.h" />
+    <ClInclude Include="hps1x64\src\intc\src\PS1_Intc.h" />
+    <ClInclude Include="hps1x64\src\mdec\src\PS1_MDEC.h" />
+    <ClInclude Include="hps1x64\src\pio\src\PS1_PIO.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\cache\R3000A_ICache.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\cop2\R3000A_COP2.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\execute\R3000A_Execute.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\execute\R3000A_Instruction.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\lookup\R3000A_Lookup.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\old\GenericDataPort.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\old\GNUSignExtend_x64.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\print\R3000ADebugPrint.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\R3000A.h" />
+    <ClInclude Include="hps1x64\src\r3000a\src\recompile\R3000A_Recompiler.h" />
+    <ClInclude Include="hps1x64\src\sio\src\PS1_SIO.h" />
+    <ClInclude Include="hps1x64\src\spu\src\adpcm.h" />
+    <ClInclude Include="hps1x64\src\spu\src\PS1_SPU.h" />
+    <ClInclude Include="hps1x64\src\spu\src\spu2\PS1_SPU2.h" />
+    <ClInclude Include="hps1x64\src\system\src\ps1_system.h" />
+    <ClInclude Include="hps1x64\src\timer\src\PS1_Timer.h" />
+    <ClInclude Include="hps1x64\src\usb\src\PS1_USB.h" />
+    <ClInclude Include="hps2x64\src\databus\src\PS2DataBus.h" />
+    <ClInclude Include="hps2x64\src\dma\src\PS2_Dma.h" />
+    <ClInclude Include="hps2x64\src\gpu\src\PS2_Gpu.h" />
+    <ClInclude Include="hps2x64\src\gpu\src\PS2_GPU_Templates.h" />
+    <ClInclude Include="hps2x64\src\hps2x64\src\hps2x64.h" />
+    <ClInclude Include="hps2x64\src\intc\src\PS2_Intc.h" />
+    <ClInclude Include="hps2x64\src\ipu\src\mpeg2lib\Mpeg.h" />
+    <ClInclude Include="hps2x64\src\ipu\src\mpeg2lib\Vlc.h" />
+    <ClInclude Include="hps2x64\src\ipu\src\PS2_IPU.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\cache\R5900_DCache.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\cache\R5900_ICache.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\execute\R5900_Execute.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\lookup\R5900_Instruction.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\lookup\R5900_Lookup.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\print\R5900_Print.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\R5900.h" />
+    <ClInclude Include="hps2x64\src\r5900\src\recompile\R5900_Recompiler.h" />
+    <ClInclude Include="hps2x64\src\sif\src\PS2_SIF.h" />
+    <ClInclude Include="hps2x64\src\sio\src\PS2_SIO.h" />
+    <ClInclude Include="hps2x64\src\system\src\ps2_system.h" />
+    <ClInclude Include="hps2x64\src\timer\src\PS2_Timer.h" />
+    <ClInclude Include="hps2x64\src\vu\src\execute\VU_Execute.h" />
+    <ClInclude Include="hps2x64\src\vu\src\lookup\VU_Instruction.h" />
+    <ClInclude Include="hps2x64\src\vu\src\lookup\VU_Lookup.h" />
+    <ClInclude Include="hps2x64\src\vu\src\print\VU_Print.h" />
+    <ClInclude Include="hps2x64\src\vu\src\recompile\VU_Recompiler.h" />
+    <ClInclude Include="hps2x64\src\vu\src\vu assembler\src\VuAssembler.h" />
+    <ClInclude Include="hps2x64\src\vu\src\VU.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zVersion.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

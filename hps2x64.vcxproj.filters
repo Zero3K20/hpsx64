@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="common\breakpoint\src\breakpoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\debug\src\Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\diskimage\cd\src\cdimage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\stringutilities\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\breakpointwindow\src\BreakpointWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\debugmemoryviewer\src\DebugMemoryViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\debugvaluelist\src\DebugValueList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\disassemblyviewer\src\DisassemblyViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\guihandler\src\MultiThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\guihandler\src\WinApiHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\infinitelistview\src\InfiniteListView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\inputbox\src\InputBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\windowsapi\winfile\src\WinFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\x64encoder\src\x64Encoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\cd\src\PS1_CD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\cdvd\src\CDvd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\databus\src\PS1DataBus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\dma\src\PS1_Dma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\gpu\src\PS1_Gpu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\intc\src\PS1_Intc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\mdec\src\PS1_MDEC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\pio\src\PS1_PIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\r3000a\src\R3000A.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\r3000a\src\cop2\R3000A_COP2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\r3000a\src\execute\R3000A_Execute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\r3000a\src\lookup\R3000A_Lookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\r3000a\src\print\R3000ADebugPrint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\r3000a\src\recompile\R3000A_Recompiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\sio\src\PS1_SIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\spu\src\adpcm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\spu\src\gx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\spu\src\PS1_SPU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\spu\src\spu2\gx2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\spu\src\spu2\PS1_SPU2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\system\src\ps1_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\timer\src\PS1_Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps1x64\src\usb\src\PS1_USB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\databus\src\PS2DataBus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\dma\src\PS2_Dma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\gpu\src\PS2_Gpu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\hps2x64\src\hps2x64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\intc\src\PS2_Intc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\ipu\src\PS2_IPU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\ipu\src\mpeg2lib\Idct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\ipu\src\mpeg2lib\Mpeg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\r5900\src\R5900.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\r5900\src\execute\R5900_Execute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\r5900\src\lookup\R5900_Lookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\r5900\src\print\R5900_Print.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\r5900\src\recompile\R5900_Recompiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\sif\src\PS2_SIF.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\sio\src\PS2_SIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\system\src\ps2_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\timer\src\PS2_Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\vu\src\VU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\vu\src\execute\VU_Execute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\vu\src\lookup\VU_Lookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\vu\src\print\VU_Print.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\vu\src\recompile\VU_Recompiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hps2x64\src\vu\src\vu assembler\src\VuAssembler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\guicon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_bitstream.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_cdrom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_chd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_flac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\libchdr\libchdr_huffman.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zAlloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zArcIn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zBuf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zBuf2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zCrc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zCrcOpt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zDec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zFile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zStream.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Aes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\AesOpt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Alloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bcj2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bcj2Enc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Bra86.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\BraIA64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\CpuArch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Delta.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\DllSecur.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzFind.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzFindMt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzFindOpt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Dec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2DecMt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Enc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma86Dec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Lzma86Enc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzmaDec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzmaEnc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\LzmaLib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\MtCoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\MtDec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7Dec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7Enc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Sha256.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Sha256Opt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Sort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\SwapBytes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Threads.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\Xz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzCrc64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzCrc64Opt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzDec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzEnc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\lzma-19.00\src\XzIn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\gzwrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\DiskImage\libchd\zlib-1.2.13\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\memmgmt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\gui\ControlWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\gui\MenuWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\gui\OpenGLWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\gui\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\gamepad\GamepadHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\recompile\RecompilerBackend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\padconfig\GamepadConfigWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\win32\capture_console\capture_console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\x64Assembler\x64_assembler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\GeneralEmuDataStructures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\GNUAsmUtility_x64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\LowPassFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\MipsOpcode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\PS2Float.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\Reciprocal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\breakpoint\src\breakpoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\debug\src\Debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\diskimage\cd\src\cdimage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\stringutilities\GeneralUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\stringutilities\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\breakpointwindow\src\BreakpointWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\debugmemoryviewer\src\DebugMemoryViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\debugvaluelist\src\DebugValueList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\disassemblyviewer\src\DisassemblyViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\guihandler\src\GNUThreading_x64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\guihandler\src\MultiThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\guihandler\src\MultithreadComm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\guihandler\src\WinApiHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\infinitelistview\src\InfiniteListView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\inputbox\src\InputBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\windowsapi\winfile\src\WinFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\x64encoder\src\x64Encoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\x64encoder\src\x64Instructions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\cd\src\PS1_CD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\cdvd\src\CDvd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\databus\src\PS1DataBus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\dma\src\PS1_Dma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\gpu\src\PS1_Gpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\intc\src\PS1_Intc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\mdec\src\PS1_MDEC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\pio\src\PS1_PIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\R3000A.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\cache\R3000A_ICache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\cop2\R3000A_COP2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\execute\R3000A_Execute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\execute\R3000A_Instruction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\lookup\R3000A_Lookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\old\GenericDataPort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\old\GNUSignExtend_x64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\print\R3000ADebugPrint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\r3000a\src\recompile\R3000A_Recompiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\sio\src\PS1_SIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\spu\src\adpcm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\spu\src\PS1_SPU.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\spu\src\spu2\PS1_SPU2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\system\src\ps1_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\timer\src\PS1_Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps1x64\src\usb\src\PS1_USB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\databus\src\PS2DataBus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\dma\src\PS2_Dma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\gpu\src\PS2_Gpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\hps2x64\src\hps2x64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\intc\src\PS2_Intc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\ipu\src\PS2_IPU.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\ipu\src\mpeg2lib\Mpeg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\ipu\src\mpeg2lib\Vlc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\R5900.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\cache\R5900_DCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\cache\R5900_ICache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\execute\R5900_Execute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\lookup\R5900_Instruction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\lookup\R5900_Lookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\print\R5900_Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\r5900\src\recompile\R5900_Recompiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\sif\src\PS2_SIF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\sio\src\PS2_SIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\system\src\ps2_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\timer\src\PS2_Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\VU.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\execute\VU_Execute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\lookup\VU_Instruction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\lookup\VU_Lookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\print\VU_Print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\recompile\VU_Recompiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\vu\src\vu assembler\src\VuAssembler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\guicon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hps2x64\src\gpu\src\PS2_GPU_Templates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\bitstream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\cdrom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\chd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\chdconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\coretypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\dr_flac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\flac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\libchdr\huffman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7z.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zAlloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zBuf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zCrc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zVersion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\7zWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Aes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Bcj2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Bra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\CpuArch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Delta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\DllSecur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzFind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzFindMt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzHash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Dec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2DecMt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma2Enc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Lzma86.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzmaDec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzmaEnc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\LzmaLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\MtCoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\MtDec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Ppmd7.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Precomp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\RotateDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Sha256.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Sort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\SwapBytes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Threads.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\Xz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\XzCrc64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\lzma-19.00\src\XzEnc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\crc32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\deflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\gzguts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inffast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inffixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\inftrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\DiskImage\libchd\zlib-1.2.13\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\contrib\anchordict.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\contrib\graphbuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\iterator_fwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node_iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\detail\node_ref.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\convert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\emit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\ptr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\node\type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\anchor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\binary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\depthguard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\dll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitfromevents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitterdef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\emittermanip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\emitterstyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\eventhandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\exceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\fptostring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\mark.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\noexcept.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\null.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\ostream_wrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\stlemitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\yaml\include\yaml-cpp\yaml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\memmgmt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\gui\ControlWindow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\gui\MenuWindow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\gui\OpenGLWindow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\gui\Window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\gamepad\GamepadHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\recompile\RecompilerBackend.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\padconfig\GamepadConfigWindow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\win32\capture_console\capture_console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\x64Assembler\x64_assembler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="common\DiskImage\libchd\lzma-19.00\src\7zVersion.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
