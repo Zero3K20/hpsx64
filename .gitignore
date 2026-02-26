@@ -1,0 +1,22 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.dll
+hps1x64
+hps2x64
+hps1x64_debug
+hps2x64_debug
+
+# Pre-built Windows executables (should be compiled from source)
+hps1x64.exe
+hps2x64.exe
+
+# IDE files
+.vs/
+*.user
+*.suo
+
+# Compiled SPIR-V shader binaries (generated from .comp files)
+*.spv
+
