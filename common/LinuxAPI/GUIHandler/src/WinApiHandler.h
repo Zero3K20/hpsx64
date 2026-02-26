@@ -294,7 +294,8 @@ using namespace std;
         static vector<ShortcutKey_Entry> ShortcutKey_Entries;
 
         static long GUIThread_isRunning;
-        static void* GUIThread;  // was Api::Thread*
+        struct GUIThreadInfo { DWORD ThreadId; };
+        static GUIThreadInfo* GUIThread;
 
         static void StartGUIThread();
         static inline void WaitForModalMenuLoop() { while (InModalMenuLoop); }
@@ -349,6 +350,19 @@ using namespace std;
             id = (int)_id;
             return nullptr;
         }
+        HWND Create_RadioButtonGroup(Window* ParentWindow, int _x, int _y, int _width = 0, int _height = 0, const char* Caption = nullptr, long long _id = 0, int /*flags*/ = 0) {
+            return Create_CmdButton(ParentWindow, _x, _y, _width, _height, Caption, _id);
+        }
+        HWND Create_RadioButton(Window* ParentWindow, int _x, int _y, int _width = 0, int _height = 0, const char* Caption = nullptr, long long _id = 0, int /*flags*/ = 0) {
+            return Create_CmdButton(ParentWindow, _x, _y, _width, _height, Caption, _id);
+        }
+        HWND Create_CheckBox(Window* ParentWindow, int _x, int _y, int _width = 0, int _height = 0, const char* Caption = nullptr, long long _id = 0, int /*flags*/ = 0) {
+            return Create_CmdButton(ParentWindow, _x, _y, _width, _height, Caption, _id);
+        }
+        int GetCheck() { return BST_UNCHECKED; }
+        static int GetCheck(HWND /*hWnd*/) { return BST_UNCHECKED; }
+        void SetCheck(int /*check*/) {}
+        static void SetCheck(HWND /*hWnd*/, int /*check*/) {}
         bool Destroy() { return true; }
         bool SetCaption(const char* caption) { Text = caption; return true; }
         bool Enable() { return true; }

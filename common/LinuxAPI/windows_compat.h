@@ -349,6 +349,7 @@ inline int MessageBoxA(HWND hwnd, const char* text, const char* title, unsigned 
 // NM notification codes
 #define NM_DBLCLK    (-3)
 #define NM_CLICK     (-2)
+#define NM_RCLICK    (-5)
 #define NM_FIRST     (0u - 0u)
 #define NM_SETFOCUS  (-7)
 
@@ -358,6 +359,68 @@ inline int MessageBoxA(HWND hwnd, const char* text, const char* title, unsigned 
 #define LVNI_SELECTED     0x0002
 #define LVN_FIRST         (0u - 100u)
 #define LVN_GETDISPINFO   (LVN_FIRST - 77)
+#define LVIF_TEXT         0x0001
+#define LVIF_IMAGE        0x0002
+
+#ifndef POINT
+struct POINT { LONG x; LONG y; };
+#endif
+
+#ifndef __NMHDR_DEFINED
+#define __NMHDR_DEFINED
+struct NMHDR { HWND hwndFrom; UINT idFrom; UINT code; };
+typedef NMHDR* LPNMHDR;
+#endif
+
+struct LVITEM {
+    UINT   mask;
+    int    iItem;
+    int    iSubItem;
+    UINT   state;
+    UINT   stateMask;
+    char*  pszText;
+    int    cchTextMax;
+    int    iImage;
+    LPARAM lParam;
+};
+
+struct NMLVDISPINFO {
+    NMHDR  hdr;
+    LVITEM item;
+};
+typedef NMLVDISPINFO* LPNMLVDISPINFO;
+
+struct NM_ITEMACTIVATE {
+    NMHDR   hdr;
+    int     iItem;
+    int     iSubItem;
+    UINT    uNewState;
+    UINT    uOldState;
+    UINT    uChanged;
+    POINT   ptAction;
+    LPARAM  lParam;
+    UINT    uKeyFlags;
+};
+typedef NM_ITEMACTIVATE* LPNMITEMACTIVATE;
+
+// Button state constants
+#define BST_UNCHECKED    0x0000
+#define BST_CHECKED      0x0001
+#define BST_INDETERMINATE 0x0002
+
+inline int Button_GetCheck(HWND /*hwnd*/) { return BST_UNCHECKED; }
+inline void Button_SetCheck(HWND /*hwnd*/, int /*check*/) {}
+
+// String functions
+inline char* lstrcpyn(char* dst, const char* src, int n) {
+    if (n > 0) { strncpy(dst, src, n - 1); dst[n - 1] = '\0'; }
+    return dst;
+}
+
+// Thread ID
+inline DWORD GetCurrentThreadId() {
+    return (DWORD)(unsigned long long)pthread_self();
+}
 
 // Common controls (stub)
 inline void InitCommonControls() {}
