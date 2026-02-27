@@ -232,6 +232,32 @@ For hps2x64.exe (PS2 simulator) -
 4. In the x64 Release configuration, after opening hpsx64.sln just right-click on hps2x64 and choose "Build" in Visual Studio.
 5. (Optional) If you would instead like to compile using clang instead of msvc, you can set it to the Release2-clang profile before building
 
+
+Linux / Steam Deck instructions:
+---------------------------------
+
+Pre-built Linux binaries (hps1x64_linux, hps2x64_linux) are provided in each GitHub release alongside launcher
+scripts (hps1x64_linux.sh, hps2x64_linux.sh).
+
+Running from the terminal:
+1. Download hps2x64_linux and hps2x64_linux.sh from the latest release into the same folder.
+2. Make both files executable:
+     chmod +x hps2x64_linux hps2x64_linux.sh
+3. Run the launcher script (not the binary directly) so that config/save files are found correctly:
+     ./hps2x64_linux.sh
+
+Running on Steam Deck (Gaming Mode):
+1. Switch to Desktop Mode.
+2. Download hps2x64_linux and hps2x64_linux.sh into the same folder (e.g. ~/Games/hps2x64/).
+3. Make both files executable:
+     chmod +x ~/Games/hps2x64/hps2x64_linux ~/Games/hps2x64/hps2x64_linux.sh
+4. Open Steam in Desktop Mode, click "Add a Non-Steam Game", browse to hps2x64_linux.sh, and add it.
+5. Return to Gaming Mode and launch it from your library.
+
+Note: The launcher script handles Gamescope (Steam Deck Gaming Mode) display setup automatically.
+If you launch the raw binary instead of the .sh script and see the Steam loading spinner then immediately
+return to the game list, re-add the .sh file as the non-Steam game instead of the binary.
+
 Profiling/Optimizing the hps2x64 code during Development:
 To profile the hps2x64 code in MSVC, make sure that the hps2x64 is set to the Release configuration
 Start the performance profiler via: Debug | Performance Profiler

@@ -311,10 +311,16 @@ inline BOOL GetMessage(void* /*msg*/, HWND /*hwnd*/, UINT /*min*/, UINT /*max*/)
 inline BOOL TranslateMessage(const void* /*msg*/) { return TRUE; }
 inline BOOL DispatchMessage(const void* /*msg*/) { return TRUE; }
 
-// GetModuleFileName stub - returns empty string on Linux
-inline DWORD GetModuleFileName(HANDLE /*module*/, char* buf, DWORD /*size*/) {
-    if (buf) buf[0] = 0;
-    return 0;
+// GetModuleFileName - returns the path of the running executable via /proc/self/exe.
+// readlink() may fail on non-Linux systems or if /proc is not mounted; in those
+// cases an empty string is returned so that callers fall back to the current
+// working directory.
+inline DWORD GetModuleFileName(HANDLE /*module*/, char* buf, DWORD size) {
+    if (!buf || !size) return 0;
+    ssize_t len = readlink("/proc/self/exe", buf, size - 1);
+    if (len < 0) { buf[0] = 0; return 0; }
+    buf[len] = 0;
+    return (DWORD)len;
 }
 inline DWORD GetModuleFileNameA(HANDLE module, char* buf, DWORD size) {
     return GetModuleFileName(module, buf, size);

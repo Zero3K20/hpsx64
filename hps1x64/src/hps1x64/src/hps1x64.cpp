@@ -1107,7 +1107,11 @@ int hps1x64::Initialize ()
 	ExePathTemp [ len ] = 0;
 	
 	// remove program name from path
+#ifdef LINUX_BUILD
+	ExecutablePath = Left ( ExePathTemp, InStrRev ( ExePathTemp, "/" ) + 1 );
+#else
 	ExecutablePath = Left ( ExePathTemp, InStrRev ( ExePathTemp, "\\" ) + 1 );
+#endif
 
 	
 	//cout << "\nExecutable Path=" << ExecutablePath.c_str();

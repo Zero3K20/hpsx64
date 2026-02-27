@@ -24,6 +24,11 @@ jobs:
       - name: Build hps2x64 (Linux)
         run: make -f MakefilePS2_Linux.txt
 
+      - name: Set execute permissions
+        run: |
+          chmod +x hps1x64_linux hps2x64_linux
+          chmod +x hps1x64_linux.sh hps2x64_linux.sh
+
       - name: Upload Linux artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -31,6 +36,8 @@ jobs:
           path: |
             hps1x64_linux
             hps2x64_linux
+            hps1x64_linux.sh
+            hps2x64_linux.sh
 
   release:
     name: Create Release
@@ -46,10 +53,18 @@ jobs:
           name: linux-binaries
           path: artifacts/linux
 
+      - name: Set execute permissions on release artifacts
+        run: |
+          chmod +x artifacts/linux/hps1x64_linux artifacts/linux/hps2x64_linux
+          chmod +x artifacts/linux/hps1x64_linux.sh artifacts/linux/hps2x64_linux.sh
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             artifacts/linux/hps1x64_linux
             artifacts/linux/hps2x64_linux
+            artifacts/linux/hps1x64_linux.sh
+            artifacts/linux/hps2x64_linux.sh
           generate_release_notes: true
+
