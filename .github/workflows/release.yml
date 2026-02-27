@@ -7,39 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-windows:
-    name: Build Windows (MinGW)
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up MinGW
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: >-
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-make
-            mingw-w64-x86_64-glew
-            mingw-w64-x86_64-freeglut
-
-      - name: Build hps1x64
-        shell: msys2 {0}
-        run: mingw32-make -f MakefilePS1.txt
-
-      - name: Build hps2x64
-        shell: msys2 {0}
-        run: mingw32-make -f MakefilePS2.txt
-
-      - name: Upload Windows artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-binaries
-          path: |
-            hps1x64.exe
-            hps2x64.exe
-
   build-linux:
     name: Build Linux
     runs-on: ubuntu-latest
@@ -67,18 +34,12 @@ jobs:
 
   release:
     name: Create Release
-    needs: [build-windows, build-linux]
+    needs: [build-linux]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
     steps:
-      - name: Download Windows artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: windows-binaries
-          path: artifacts/windows
-
       - name: Download Linux artifacts
         uses: actions/download-artifact@v4
         with:
@@ -89,8 +50,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            artifacts/windows/hps1x64.exe
-            artifacts/windows/hps2x64.exe
             artifacts/linux/hps1x64_linux
             artifacts/linux/hps2x64_linux
           generate_release_notes: true
