@@ -1351,9 +1351,11 @@ void hps2x64::Initialize ()
 	ExePathTemp [ len ] = 0;
 	
 	// remove program name from path
+#ifdef LINUX_BUILD
+	ExecutablePath = Left ( ExePathTemp, InStrRev ( ExePathTemp, "/" ) + 1 );
+#else
 	ExecutablePath = Left ( ExePathTemp, InStrRev ( ExePathTemp, "\\" ) + 1 );
-	
-	//cout << "\nExecutable Path=" << ExecutablePath.c_str();
+#endif
 	
 	cout << "\nLoading memory cards if available...";
 	
