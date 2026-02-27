@@ -53,7 +53,11 @@ using namespace R5900;
 using namespace R5900::Instruction;
 using namespace Playstation2;
 
-using namespace std;
+using std::cout;
+using std::hex;
+using std::dec;
+using std::setw;
+using std::stringstream;
 
 //#include "GNUSignExtend_x64.h"
 //using namespace x64SignExtend::Utilities;
