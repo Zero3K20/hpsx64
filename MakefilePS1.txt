@@ -74,7 +74,7 @@ SRC_PS1 = $(SRC_PS1_R3000A) $(SRC_PS1_CD) $(SRC_PS1_GPU) $(SRC_PS1_DMA) $(SRC_PS
 INC = $(INC_PS1) $(INC_COMMON) $(INC_PS1_PLATFORM) $(INC_WIN32) $(INC_YAML)
 SRC = $(SRC_PS1) $(SRC_COMMON) $(SRC_PS1_PLATFORM) $(SRC_WIN32)
 LIBS = -lglew32 -lopengl32 -lglu32 -lgdi32 -lComctl32 -lkernel32 -lwinmm -ldinput8 -ldxguid
-CFLAGS = -w -Wl,-subsystem,console -mwindows -std=c++17 -fpermissive -ftemplate-depth=2048 -static -static-libgcc -static-libstdc++ -DGLEW_STATIC -O3 -DUSE_PS1_GPU_TEMPLATES -DDISABLE_RECOMPILER_R3000A
+CFLAGS = -w -Wl,-subsystem,console -mwindows -std=c++17 -fpermissive -ftemplate-depth=2048 -static -static-libgcc -static-libstdc++ -DGLEW_STATIC -O3 -DUSE_PS1_GPU_TEMPLATES -DDISABLE_RECOMPILER_R3000A -D__RPCNDR_H_BYTE_TYPEDEF__
 #-std=gnu++11
 #-Wl,--stack,134217728
 #-Wl,--stack,16777216
