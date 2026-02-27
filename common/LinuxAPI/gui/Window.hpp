@@ -33,7 +33,7 @@ public:
     Window(const std::string& class_name, const std::string& title);
     virtual ~Window();
 
-    bool Create(int width, int height, SizeMode mode = SizeMode::CLIENT_AREA);
+    virtual bool Create(int width, int height, SizeMode mode = SizeMode::CLIENT_AREA);
     void Show(int show_command = 1);
     bool ProcessMessages();
     bool ProcessWindowMessages();
@@ -87,6 +87,7 @@ public:
 protected:
     virtual bool HandleEvent(const SDL_Event& event);
     virtual bool PostCreateInitialize() { return true; }
+    virtual Uint32 GetExtraWindowFlags() const { return 0; }
 
     SDL_Window* m_sdl_window;
     std::string m_class_name;

@@ -63,7 +63,7 @@ bool Window::Create(int width, int height, SizeMode /*mode*/)
 {
     if (m_sdl_window) return true;
 
-    Uint32 flags = SDL_WINDOW_SHOWN;
+    Uint32 flags = SDL_WINDOW_SHOWN | GetExtraWindowFlags();
     if (m_user_resizable) flags |= SDL_WINDOW_RESIZABLE;
 
     m_sdl_window = SDL_CreateWindow(
