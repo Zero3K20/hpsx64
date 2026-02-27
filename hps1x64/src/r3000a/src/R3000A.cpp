@@ -42,6 +42,14 @@ using namespace std;
 
 //#include "GNUSignExtend_x64.h"
 
+#if defined(__GNUC__) && !defined(_MSC_VER)
+// GCC on Windows does not support __try/__except in C++ mode.
+// Map __except to catch(...) so the code compiles; __try is already an alias for try in GCC.
+#ifndef __except
+#define __except(x) catch(...)
+#endif
+#endif
+
 
 
 //using namespace x64SignExtend::Utilities;

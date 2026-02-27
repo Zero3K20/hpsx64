@@ -362,7 +362,7 @@ void Execute::EXECUTE_PS2_DOUBLE_ITOF_PACKED_AVX2(VU* v, Vu::Instruction::Format
 
 	iop128_0 = _mm_load_si128((const __m128i*) & v->vf[i.Fs].sw0);
 
-	iop128_0 = _mm_cvtepi32_ps(iop128_0);
+	iop128_0 = _mm_castps_si128(_mm_cvtepi32_ps(iop128_0));
 
 	if (FP)
 	{
