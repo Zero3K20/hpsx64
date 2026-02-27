@@ -2794,7 +2794,7 @@ cout << " RETURN";
 						e->BtrMem32Imm((int32_t*)&r->Status.isSomethingBusy, 1);
 
 						// jump if it is branching
-						e->JMP_B(Exit_Recompiler);
+						e->JMP_B((void*)Exit_Recompiler);
 
 					}	// end if (r->bDelaySlot0_Recompiler)
 
@@ -2976,7 +2976,7 @@ cout << "\nRecompiler: Done with loop";
 				}
 
 
-				e->JMP_NE(Exit_Recompiler);
+				e->JMP_NE((void*)Exit_Recompiler);
 
 #ifdef CONNECT_BLOCKS_CHECK_EVENTS
 				// get updated CycleCount value for CPU
@@ -2997,7 +2997,7 @@ cout << "\nRecompiler: Done with loop";
 				// branch if current cycle is greater (or equal?) than next event cycle
 				// changing this so that it branches if not returning
 				// note: should probably be below or equal then jump, since the interpreter adds one to cycle
-				e->JMP_AE(Exit_Recompiler);
+				e->JMP_AE((void*)Exit_Recompiler);
 #endif
 
 
@@ -4952,7 +4952,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 					// also need to add the time to load and execute the next instruction
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-					ret = e->JMP_E(Exit_Recompiler);
+					ret = e->JMP_E((void*)Exit_Recompiler);
 				}
 
 			}
@@ -5011,7 +5011,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 				e->MovRegImm32(RCX, TargetAddress);
 				e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-				ret = e->JMP_NE(Exit_Recompiler);
+				ret = e->JMP_NE((void*)Exit_Recompiler);
 			}
 
 			break;
@@ -5046,7 +5046,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-					ret = e->JMP_LE(Exit_Recompiler);
+					ret = e->JMP_LE((void*)Exit_Recompiler);
 				}
 			}
 			else
@@ -5098,7 +5098,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 				e->MovRegImm32(RCX, TargetAddress);
 				e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-				ret = e->JMP_G(Exit_Recompiler);
+				ret = e->JMP_G((void*)Exit_Recompiler);
 			}
 
 			break;
@@ -5133,7 +5133,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-					ret = e->JMP_L(Exit_Recompiler);
+					ret = e->JMP_L((void*)Exit_Recompiler);
 				}
 
 				break;
@@ -5166,7 +5166,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 						e->MovRegImm32(RCX, TargetAddress);
 						e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-						ret = e->JMP_GE(Exit_Recompiler);
+						ret = e->JMP_GE((void*)Exit_Recompiler);
 					}
 				}
 				else
@@ -5217,7 +5217,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-					ret = e->JMP_L(Exit_Recompiler);
+					ret = e->JMP_L((void*)Exit_Recompiler);
 				}
 
 				break;
@@ -5252,7 +5252,7 @@ cout << "\nAddress=" << hex << Address << " sOffset=" << i.sImmediate;
 						e->MovRegImm32(RCX, TargetAddress);
 						e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles + ullLoadCycles + EXECUTE_CYCLES);
 
-						ret = e->JMP_GE(Exit_Recompiler);
+						ret = e->JMP_GE((void*)Exit_Recompiler);
 					}
 				}
 				else
