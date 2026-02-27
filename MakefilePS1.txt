@@ -45,7 +45,7 @@ INC_PS1 = $(INC_PS1_R3000A) $(INC_PS1_CD) $(INC_PS1_GPU) $(INC_PS1_DMA) $(INC_PS
 
 SRC_PS1_PLATFORM = $(wildcard $(DIR_HPS1X64)/hps1x64/src/*.cpp) $(wildcard $(DIR_PLATFORM)/GUIHandler/src/*.cpp) $(wildcard $(DIR_PLATFORM)/WinFile/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) $(wildcard $(DIR_PLATFORM)/InputBox/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) $(wildcard $(DIR_PLATFORM)/Joystick/src/*.cpp) $(wildcard $(DIR_PLATFORM)/DebugValueList/src/*.cpp)
 SRC_WIN32 = $(DIR_WIN32)/recompile/RecompilerBackend.cpp $(DIR_WIN32)/gamepad/GamepadHandler.cpp $(DIR_WIN32)/capture_console/capture_console.cpp $(DIR_WIN32)/gui/Window.cpp $(DIR_WIN32)/gui/ControlWindow.cpp $(DIR_WIN32)/gui/MenuWindow.cpp $(DIR_WIN32)/gui/OpenGLWindow.cpp $(DIR_WIN32)/padconfig/GamepadConfigWindow.cpp
-SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) $(wildcard $(DIR_COMMON)/breakpoint/src/*.cpp) $(wildcard $(DIR_COMMON)/debug/src/*.cpp) $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) $(wildcard $(DIR_COMMON)/config/src/*.cpp) $(DIR_COMMON)/x64Assembler/x64_assembler.cpp
+SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) $(wildcard $(DIR_COMMON)/breakpoint/src/*.cpp) $(wildcard $(DIR_COMMON)/debug/src/*.cpp) $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) $(wildcard $(DIR_COMMON)/config/src/*.cpp) $(DIR_COMMON)/x64Assembler/x64_assembler.cpp $(DIR_COMMON)/memmgmt.cpp
 
 DIR_LIBCHD = $(DIR_COMMON)/DiskImage/libchd
 DIR_LIBCHDR = $(DIR_LIBCHD)/libchdr
