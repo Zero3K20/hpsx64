@@ -44,7 +44,7 @@
 
 
 // *** I'll put this here temporarily for debugging *** //
-#include "PS2_GPU.h"
+#include "PS2_Gpu.h"
 #include "VU.h"
 #include "PS1_SPU2.h"
 

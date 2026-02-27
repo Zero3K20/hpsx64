@@ -260,9 +260,9 @@ struct mpeg2_scan_pack
 };
 
 extern int bitstream_init ();
-extern u32 UBITS(uint bits);
-extern s32 SBITS(uint bits);
-extern void DUMPBITS(uint num);
+extern u32 UBITS(unsigned long bits);
+extern s32 SBITS(unsigned long bits);
+extern void DUMPBITS(unsigned long num);
 extern u32 GETBITS(uint num);
 extern bool RESERVEBITS ( uint num );
 extern void ALIGN ();

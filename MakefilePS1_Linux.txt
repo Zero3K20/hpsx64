@@ -105,8 +105,7 @@ SRC_COMMON = $(wildcard $(DIR_COMMON)/StringUtilities/*.cpp) \
              $(wildcard $(DIR_COMMON)/debug/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/DiskImage/cd/src/*.cpp) \
              $(wildcard $(DIR_COMMON)/x64Encoder/src/*.cpp) \
-             $(wildcard $(DIR_COMMON)/config/src/*.cpp) \
-             $(DIR_COMMON)/memmgmt.cpp
+             $(wildcard $(DIR_COMMON)/config/src/*.cpp)
 
 # C files from third-party libraries must be compiled with gcc (not g++)
 # to avoid conflicts with windows_compat.h and K&R C syntax

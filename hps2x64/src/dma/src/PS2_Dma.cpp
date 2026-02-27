@@ -17,7 +17,7 @@
 
 
 #include "PS2_Dma.h"
-#include "PS2_GPU.h"
+#include "PS2_Gpu.h"
 #include "PS2_SIF.h"
 #include "PS2_IPU.h"
 

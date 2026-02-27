@@ -34,6 +34,7 @@ INC_COMMON = -I$(DIR_COMMON) \
              -I$(DIR_COMMON)/DiskImage/libchd/lzma-19.00/src \
              -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 \
              -I$(DIR_COMMON)/x64Encoder/src/ \
+             -I$(DIR_COMMON)/x64Assembler \
              -I$(DIR_COMMON)/config/src/
 
 INC_PLATFORM = -I$(DIR_HPS2X64)/hps2x64/src/ \
@@ -126,6 +127,7 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS2X64)/hps2x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
                      $(DIR_LINUX_API)/linux_main.cpp \
+                     $(DIR_LINUX_API)/memmgmt.cpp \
                      $(wildcard $(DIR_PLATFORM)/DisassemblyViewer/src/*.cpp) \
                      $(wildcard $(DIR_PLATFORM)/BreakpointWindow/src/*.cpp) \
                      $(wildcard $(DIR_PLATFORM)/DebugMemoryViewer/src/*.cpp) \
@@ -208,7 +210,7 @@ SRC = $(SRC_PS2) $(SRC_COMMON) $(SRC_LINUX_PLATFORM) $(SRC_PS1) $(SRC_MPEGLIB1) 
 
 LIBS = $(SDL2_LIBS) -lGL -lGLU -lpthread -ldl
 CFLAGS = -w -Wreturn-type -Wuninitialized -Wmaybe-uninitialized -std=c++17 \
-         -fpermissive -ftemplate-depth=2048 -msse4.2 -O3 \
+         -fpermissive -ftemplate-depth=2048 -msse4.2 -mavx2 -O3 \
          -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES \
          -DLINUX_BUILD
 
