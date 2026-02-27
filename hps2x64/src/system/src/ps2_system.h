@@ -239,13 +239,13 @@ namespace Playstation2
 		void Test ();
 
 		// run the devices on the bus except for cpu for current cycle
-		inline void RunDevices ();
+		void RunDevices ();
 		
 		// execute any pending events
-		inline void RunEvents ();
+		void RunEvents ();
 
 		// run one cycle for entire playstation 2 system
-		inline void Run ();
+		void Run ();
 		
 		// run certain number of cycles
 		void Run_Cycles ( u64 Cycles );

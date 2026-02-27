@@ -9,6 +9,7 @@
 #define X64_ASSEMBLER_H
 
 #include <array>
+#include <cstdio>
 #include <string_view>
 #include <cstdint>
 #include <vector>

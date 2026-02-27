@@ -924,7 +924,7 @@ namespace Playstation2
 		inline void EndTransfer ( int iChannel, bool SuppressEventUpdate = false );
 		
 		// checks for and resumes the dma transfer(s)
-		inline void CheckTransfer ();
+		void CheckTransfer ();
 		
 		// suspends dma transfer without triggering interrupt
 		void SuspendTransfer ( int iChannel );

@@ -11,7 +11,7 @@ DIR_YAML = .\common\yaml\src\yaml-cpp
 SUBDIRS_YAML = $(sort $(dir $(wildcard $(DIR_YAML)/*/)))
 INC_YAML = -I$(DIR_YAML) $(addprefix -I,$(SUBDIRS_YAML))
 
-INC_COMMON = -I$(DIR_COMMON) -I$(DIR_COMMON)/breakpoint/src -I$(DIR_COMMON)/debug/src -I$(DIR_COMMON)/DiskImage/cd/src -I$(DIR_COMMON)/DiskImage/libchd/libchdr -I$(DIR_COMMON)/DiskImage/libchd/lzma-19.00/src -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 -I$(DIR_COMMON)/StringUtilities -I$(DIR_COMMON)/Vulkan -I$(DIR_COMMON)/x64Encoder/src
+INC_COMMON = -I$(DIR_COMMON) -I$(DIR_COMMON)/breakpoint/src -I$(DIR_COMMON)/debug/src -I$(DIR_COMMON)/DiskImage/cd/src -I$(DIR_COMMON)/DiskImage/libchd/libchdr -I$(DIR_COMMON)/DiskImage/libchd/lzma-19.00/src -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 -I$(DIR_COMMON)/StringUtilities -I$(DIR_COMMON)/Vulkan -I$(DIR_COMMON)/x64Encoder/src -I$(DIR_COMMON)/x64Assembler
 
 INC_PS1_PLATFORM = -I$(DIR_HPS1X64)/hps1x64/src/ -I$(DIR_PLATFORM)/GUIHandler/src/ -I$(DIR_PLATFORM)/WinFile/src/ -I$(DIR_PLATFORM)/DebugValueList/src/ -I$(DIR_PLATFORM)/DisassemblyViewer/src/ -I$(DIR_PLATFORM)/InputBox/src/ -I$(DIR_PLATFORM)/DebugMemoryViewer/src/ -I$(DIR_PLATFORM)/BreakpointWindow/src/ -I$(DIR_PLATFORM)/Joystick/src/
 
