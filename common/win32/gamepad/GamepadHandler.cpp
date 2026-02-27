@@ -15,8 +15,6 @@
 #include <iostream>
 
 #include <cstdlib>  // for wcstombs_s
- // or
-#include <atlconv.h>  // for ATL string conversion macros
 
 LPDIRECTINPUT8 GamepadHandler::m_pDirectInput = nullptr;                        ///< DirectInput interface
 std::vector<std::unique_ptr<GamepadHandler::GamepadDevice>> GamepadHandler::m_devices;          ///< Connected devices
