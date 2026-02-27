@@ -4988,7 +4988,7 @@ cout << " RETURN";
 
 							// jump if it is branching
 							//e->Jmp_B(r->DelaySlot0_Recompiler);
-							e->JMP_B(Exit_Recompiler);
+							e->JMP_B((void*)Exit_Recompiler);
 
 						}	// end if (r->DelaySlot0_Recompiler)
 
@@ -5198,18 +5198,18 @@ cout << "\nRecompiler: Done with loop";
 
 					e->CmovERegMem32(RAX, (int32_t*)&StartAddress[(Block + 1) & NumBlocks_Mask]);
 					e->CmpReg32ImmX(RAX, Address);
-					//e->JMP_NE(Exit_Recompiler);
+					//e->JMP_NE((void*)Exit_Recompiler);
 
 				}
 				else
 				{
 					// step 2: check if next block has the correct source address
 					e->CmpMem32ImmX((int32_t*)&StartAddress[(Block + 1) & NumBlocks_Mask], Address);
-					//e->JMP_NE(Exit_Recompiler);
+					//e->JMP_NE((void*)Exit_Recompiler);
 
 				}
 
-				e->JMP_NE(Exit_Recompiler);
+				e->JMP_NE((void*)Exit_Recompiler);
 
 #ifdef CONNECT_BLOCKS_CHECK_EVENTS
 				// get updated CycleCount value for CPU
@@ -5230,7 +5230,7 @@ cout << "\nRecompiler: Done with loop";
 				// branch if current cycle is greater (or equal?) than next event cycle
 				// changing this so that it branches if not returning
 				// note: should probably be below or equal then jump, since the interpreter adds one to cycle
-				e->JMP_AE(Exit_Recompiler);
+				e->JMP_AE((void*)Exit_Recompiler);
 #endif
 
 				// update the cycle count
@@ -10337,7 +10337,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 		//e->Jmp8_B ( 0, 0 );
 		//e->Jmp8_AE ( 0, 3 );
 		//e->Jmp_AE(0, 3);
-		e->JMP_AE(Exit_Recompiler);
+		e->JMP_AE((void*)Exit_Recompiler);
 	}
 
 
@@ -10475,7 +10475,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, Address + 8);
 						e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-						ret = e->JMP_AE(Exit_Recompiler);
+						ret = e->JMP_AE((void*)Exit_Recompiler);
 					}
 
 					e->Set_B(RAX);
@@ -10489,7 +10489,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-					ret = e->JMP_B(Exit_Recompiler);
+					ret = e->JMP_B((void*)Exit_Recompiler);
 				}
 
 				break;
@@ -10523,7 +10523,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, Address + 8);
 						e->MovRegImm32(RDX, LocalCycleCount);
 
-						ret = e->JMP_B(Exit_Recompiler);
+						ret = e->JMP_B((void*)Exit_Recompiler);
 					}
 
 					e->Set_AE(RAX);
@@ -10537,7 +10537,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-					ret = e->JMP_AE(Exit_Recompiler);
+					ret = e->JMP_AE((void*)Exit_Recompiler);
 				}
 
 				break;
@@ -10588,7 +10588,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, Address + 8);
 						e->MovRegImm32(RDX, LocalCycleCount);
 
-						ret = e->JMP_NE(Exit_Recompiler);
+						ret = e->JMP_NE((void*)Exit_Recompiler);
 					}
 
 					e->Set_E(RAX);
@@ -10602,7 +10602,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-					ret = e->JMP_E(Exit_Recompiler);
+					ret = e->JMP_E((void*)Exit_Recompiler);
 				}
 
 			}
@@ -10663,7 +10663,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, Address + 8);
 					e->MovRegImm32(RDX, LocalCycleCount);
 
-					ret = e->JMP_E(Exit_Recompiler);
+					ret = e->JMP_E((void*)Exit_Recompiler);
 				}
 
 				e->Set_NE(RAX);
@@ -10677,7 +10677,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 				e->MovRegImm32(RCX, TargetAddress);
 				e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-				ret = e->JMP_NE(Exit_Recompiler);
+				ret = e->JMP_NE((void*)Exit_Recompiler);
 			}
 
 			break;
@@ -10714,7 +10714,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, Address + 8);
 						e->MovRegImm32(RDX, LocalCycleCount);
 
-						ret = e->JMP_G(Exit_Recompiler);
+						ret = e->JMP_G((void*)Exit_Recompiler);
 					}
 
 					e->Set_LE(RAX);
@@ -10728,7 +10728,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-					ret = e->JMP_LE(Exit_Recompiler);
+					ret = e->JMP_LE((void*)Exit_Recompiler);
 				}
 			}
 			else
@@ -10782,7 +10782,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, Address + 8);
 					e->MovRegImm32(RDX, LocalCycleCount);
 
-					ret = e->JMP_LE(Exit_Recompiler);
+					ret = e->JMP_LE((void*)Exit_Recompiler);
 				}
 
 				e->Set_G(RAX);
@@ -10796,7 +10796,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 				e->MovRegImm32(RCX, TargetAddress);
 				e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-				ret = e->JMP_G(Exit_Recompiler);
+				ret = e->JMP_G((void*)Exit_Recompiler);
 			}
 
 			break;
@@ -10836,7 +10836,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, Address + 8);
 						e->MovRegImm32(RDX, LocalCycleCount);
 
-						ret = e->JMP_GE(Exit_Recompiler);
+						ret = e->JMP_GE((void*)Exit_Recompiler);
 					}
 
 					e->Set_L(RAX);
@@ -10850,7 +10850,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-					ret = e->JMP_L(Exit_Recompiler);
+					ret = e->JMP_L((void*)Exit_Recompiler);
 				}
 
 				break;
@@ -10885,7 +10885,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 							e->MovRegImm32(RCX, Address + 8);
 							e->MovRegImm32(RDX, LocalCycleCount);
 
-							ret = e->JMP_L(Exit_Recompiler);
+							ret = e->JMP_L((void*)Exit_Recompiler);
 						}
 
 						e->Set_GE(RAX);
@@ -10899,7 +10899,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, TargetAddress);
 						e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-						ret = e->JMP_GE(Exit_Recompiler);
+						ret = e->JMP_GE((void*)Exit_Recompiler);
 					}
 				}
 				else
@@ -10952,7 +10952,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, Address + 8);
 						e->MovRegImm32(RDX, LocalCycleCount);
 
-						ret = e->JMP_GE(Exit_Recompiler);
+						ret = e->JMP_GE((void*)Exit_Recompiler);
 					}
 
 					e->Set_L(RAX);
@@ -10966,7 +10966,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 					e->MovRegImm32(RCX, TargetAddress);
 					e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-					ret = e->JMP_L(Exit_Recompiler);
+					ret = e->JMP_L((void*)Exit_Recompiler);
 				}
 
 				break;
@@ -11003,7 +11003,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 							e->MovRegImm32(RCX, Address + 8);
 							e->MovRegImm32(RDX, LocalCycleCount);
 
-							ret = e->JMP_L(Exit_Recompiler);
+							ret = e->JMP_L((void*)Exit_Recompiler);
 						}
 
 						e->Set_GE(RAX);
@@ -11017,7 +11017,7 @@ int32_t R5900::Recompiler::Generate_Normal_Branch(R5900::Instruction::Format i, 
 						e->MovRegImm32(RCX, TargetAddress);
 						e->MovRegImm32(RDX, LocalCycleCount + lBranchTaken_Cycles);
 
-						ret = e->JMP_GE(Exit_Recompiler);
+						ret = e->JMP_GE((void*)Exit_Recompiler);
 					}
 				}
 				else
