@@ -16,7 +16,7 @@ SRC_C = $(wildcard $(DIR_LIBCHDR)/*.c) $(wildcard $(DIR_LZMA)/*.c) $(wildcard $(
 OBJ_C = $(patsubst %.c,%.o,$(SRC_C))
 INC_LIBCHD = -I$(DIR_LIBCHDR) -I$(DIR_LZMA) -I$(DIR_ZLIB)
 
-INC_COMMON = -I$(DIR_COMMON) -I$(DIR_COMMON)/StringUtilities -I$(DIR_COMMON)/breakpoint/src -I$(DIR_COMMON)/debug/src -I$(DIR_COMMON)/DiskImage/cd/src -I$(DIR_COMMON)/DiskImage/libchd/libchdr -I$(DIR_COMMON)/DiskImage/libchd/lzma-19.00/src -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 -I$(DIR_COMMON)/x64Encoder/src/ -I$(DIR_COMMON)/config/src/
+INC_COMMON = -I$(DIR_COMMON) -I$(DIR_COMMON)/StringUtilities -I$(DIR_COMMON)/breakpoint/src -I$(DIR_COMMON)/debug/src -I$(DIR_COMMON)/DiskImage/cd/src -I$(DIR_COMMON)/DiskImage/libchd/libchdr -I$(DIR_COMMON)/DiskImage/libchd/lzma-19.00/src -I$(DIR_COMMON)/DiskImage/libchd/zlib-1.2.13 -I$(DIR_COMMON)/x64Encoder/src/ -I$(DIR_COMMON)/config/src/ -I$(DIR_COMMON)/x64Assembler
 INC_PLATFORM = -I$(DIR_HPS2X64)/hps2x64/src/ -I$(DIR_PLATFORM)/GUIHandler/src/ -I$(DIR_PLATFORM)/WinFile/src/ -I$(DIR_PLATFORM)/DebugValueList/src/ -I$(DIR_PLATFORM)/DisassemblyViewer/src/ -I$(DIR_PLATFORM)/InputBox/src/ -I$(DIR_PLATFORM)/DebugMemoryViewer/src/ -I$(DIR_PLATFORM)/BreakpointWindow/src/ -I$(DIR_PLATFORM)/Joystick/src/
 
 DIR_PS1 = $(DIR_HPS1X64)
@@ -124,7 +124,7 @@ SRC_MPEGLIB2 = $(wildcard $(DIR_PS2_IPU)/mpeg2lib/Mpeg.cpp)
 INC = $(INC_PS2) $(INC_COMMON) $(INC_PLATFORM) $(INC_PS1) $(INC_WIN32)
 SRC = $(SRC_PS2) $(SRC_COMMON) $(SRC_PLATFORM) $(SRC_PS1) $(SRC_WIN32)
 LIBS = -Wl,-subsystem,console -lglew32 -lopengl32 -lglu32 -lgdi32 -lComctl32 -lwinmm -ldinput8 -ldxguid
-CFLAGS = -w -Wreturn-type -Wuninitialized -Wmaybe-uninitialized -mwindows -msse4.2 -static -static-libgcc -static-libstdc++ -DGLEW_STATIC -O3 -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES
+CFLAGS = -w -Wreturn-type -Wuninitialized -Wmaybe-uninitialized -mwindows -msse4.2 -mavx2 -ftemplate-depth=2048 -static -static-libgcc -static-libstdc++ -DGLEW_STATIC -O3 -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES
 #CFLAGS = -w -mwindows -mavx2 -fpermissive -static-libgcc -static-libstdc++ -O3 -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES
 #CFLAGS = -w -Wreturn-type -g -mwindows -msse4.2 -static -static-libgcc -static-libstdc++ -DGLEW_STATIC -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES
 #CFLAGS = -w -mwindows -mavx2 -O3 -fno-tree-vectorize -fpermissive -static-libgcc -static-libstdc++ -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES
