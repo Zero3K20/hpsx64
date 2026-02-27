@@ -1821,7 +1821,13 @@ int hps1x64::RunProgram ()
 	{
 		Sleep ( 250 );
 		
-		// process events
+		// process window-level events (handles close/quit, resize, fullscreen toggle)
+		if ( !m_prgwindow->ProcessMessages() )
+		{
+			OnClick_File_Exit(0);
+		}
+
+		// process remaining system events (keyboard shortcuts, etc.)
 		WindowClass::DoEvents ();
 
 		HandleMenuClick ();

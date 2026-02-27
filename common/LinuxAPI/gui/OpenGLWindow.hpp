@@ -26,6 +26,8 @@ public:
     OpenGLWindow(const std::string& class_name, const std::string& title);
     virtual ~OpenGLWindow();
 
+    bool Create(int width, int height, SizeMode mode = SizeMode::CLIENT_AREA) override;
+
     void DisplayPixelArray(const unsigned char* pixels, int width, int height);
     void DisplayPixelArrayScaled(const unsigned char* pixels, int width, int height,
                                   DisplayMode mode = DisplayMode::FIT);
@@ -54,6 +56,7 @@ public:
 protected:
     bool PostCreateInitialize() override;
     bool HandleEvent(const SDL_Event& event) override;
+    Uint32 GetExtraWindowFlags() const override { return SDL_WINDOW_OPENGL; }
 
 private:
     SDL_GLContext m_gl_context;

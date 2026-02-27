@@ -21,6 +21,17 @@ OpenGLWindow::OpenGLWindow(const std::string& class_name, const std::string& tit
 {
 }
 
+bool OpenGLWindow::Create(int width, int height, SizeMode mode)
+{
+    // Set OpenGL attributes before window creation (required by SDL2)
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);
+
+    return Window::Create(width, height, mode);
+}
+
 OpenGLWindow::~OpenGLWindow()
 {
     if (m_gl_context) {
@@ -38,12 +49,6 @@ OpenGLWindow::~OpenGLWindow()
 bool OpenGLWindow::PostCreateInitialize()
 {
     if (!m_sdl_window) return false;
-
-    // Set OpenGL attributes before creating context
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);
 
     m_gl_context = SDL_GL_CreateContext(m_sdl_window);
     if (!m_gl_context) {
