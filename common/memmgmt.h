@@ -1,5 +1,6 @@
 #pragma once
 #include <cstddef> // for size_t
+#include <cstdint> // for uint32_t, uint64_t
 #include <vector>
 
 
