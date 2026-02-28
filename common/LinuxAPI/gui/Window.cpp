@@ -59,9 +59,7 @@ static std::string RunZenity(const std::vector<std::string>& args)
         for (char c : title_arg) { if (c == '\'') kcmd += "'\\''"; else kcmd += c; }
         kcmd += "'";
     }
-    if (is_multi)
-        kcmd += " --getopenfilename";
-    else if (is_save)
+    if (is_save)
         kcmd += " --getsavefilename";
     else
         kcmd += " --getopenfilename";
@@ -71,6 +69,11 @@ static std::string RunZenity(const std::vector<std::string>& args)
         for (char c : filename_arg) { if (c == '\'') kcmd += "'\\''"; else kcmd += c; }
         kcmd += "'";
     }
+
+    // kdialog supports multiple selection by passing --multiple after the path
+    if (is_multi)
+        kcmd += " --multiple";
+
     kcmd += " 2>/dev/null";
 
     FILE* kpipe = popen(kcmd.c_str(), "r");

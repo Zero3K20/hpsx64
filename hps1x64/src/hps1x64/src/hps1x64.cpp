@@ -1190,7 +1190,7 @@ void hps1x64::SetupMenus()
 
 	m_prgwindow->AddMenuItem("file", "file|reset", "Reset", "F6",
 		[this]() {
-			OnClick_File_Save_State(0);
+			OnClick_File_Reset(0);
 		});
 
 
