@@ -1823,7 +1823,7 @@ int hps1x64::RunProgram ()
 	// wait for command
 	while ( 1 )
 	{
-		Sleep ( 250 );
+		Sleep ( 16 );
 		
 		// process window-level events (handles close/quit, resize, fullscreen toggle)
 		if ( !m_prgwindow->ProcessMessages() )
