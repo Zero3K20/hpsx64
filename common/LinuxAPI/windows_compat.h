@@ -303,7 +303,13 @@ inline DWORD WaitForSingleObject(HANDLE /*h*/, DWORD /*timeout*/) { return WAIT_
 inline DWORD WaitForMultipleObjects(DWORD /*count*/, const HANDLE* /*handles*/, BOOL /*waitAll*/, DWORD /*timeout*/) {
     return WAIT_OBJECT_0;
 }
-inline DWORD MsgWaitForMultipleObjectsEx(DWORD /*nCount*/, const HANDLE* /*pHandles*/, DWORD /*dwMilliseconds*/, DWORD /*dwWakeMask*/, DWORD /*dwFlags*/) {
+inline DWORD MsgWaitForMultipleObjectsEx(DWORD /*nCount*/, const HANDLE* /*pHandles*/, DWORD dwMilliseconds, DWORD /*dwWakeMask*/, DWORD /*dwFlags*/) {
+    if (dwMilliseconds > 0 && dwMilliseconds != INFINITE) {
+        struct timespec ts;
+        ts.tv_sec  = dwMilliseconds / 1000;
+        ts.tv_nsec = (dwMilliseconds % 1000) * 1000000L;
+        nanosleep(&ts, nullptr);
+    }
     return WAIT_OBJECT_0;
 }
 inline BOOL PeekMessage(void* /*msg*/, HWND /*hwnd*/, UINT /*min*/, UINT /*max*/, UINT /*remove*/) { return FALSE; }
