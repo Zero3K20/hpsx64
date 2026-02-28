@@ -22,6 +22,8 @@
 
 #include "GeneralUtilities.h"
 
+#include <stdexcept>
+
 
 
 using namespace Playstation1;
@@ -272,7 +274,18 @@ void SPU::Start ()
 
 #ifdef SPU1_USE_WAVEOUT
 
+#ifdef LINUX_BUILD
+	try {
+		waveout_driver = new WaveOutDriver();
+	} catch (const std::exception& e) {
+		// Audio initialisation failed; the emulator continues without sound.
+		// This can happen when no audio device is available at startup.
+		cout << "\nSPU: WARNING: audio init failed (" << e.what() << ") - running without audio.\n";
+		waveout_driver = nullptr;
+	}
+#else
 	waveout_driver = new WaveOutDriver();
+#endif
 
 #else
 
@@ -1441,7 +1454,8 @@ void SPU::Run ()
 
 #ifdef SPU1_USE_WAVEOUT
 
-	waveout_driver->pushSample(adpcm_decoder::clamp(SampleL), adpcm_decoder::clamp(SampleR));
+	if (waveout_driver)
+		waveout_driver->pushSample(adpcm_decoder::clamp(SampleL), adpcm_decoder::clamp(SampleR));
 #else
 
 	// mix samples

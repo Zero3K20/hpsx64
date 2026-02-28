@@ -104,8 +104,21 @@ private:
         bool checked;
     };
 
+    // Keyboard shortcut entry: SDL keycode + modifier mask → menu item key
+    struct ShortcutEntry {
+        SDL_Keycode key;
+        SDL_Keymod  mod;  // required modifiers (KMOD_CTRL, KMOD_SHIFT, etc.) or KMOD_NONE
+        std::string item_name;
+    };
+
+    // Parse a shortcut string like "F2", "Ctrl+R", "F10" into SDL key + modifier.
+    // Returns true on success.
+    static bool ParseShortcutString(const std::string& shortcut,
+                                    SDL_Keycode& out_key, SDL_Keymod& out_mod);
+
     // Simple text-based menu tracking (rendered on key press on Linux)
     std::map<std::string, std::vector<std::string>> m_menu_items_order;
     std::map<std::string, MenuItemInfo> m_menu_items;
     std::vector<std::string> m_menu_order;
+    std::vector<ShortcutEntry> m_shortcuts;
 };
