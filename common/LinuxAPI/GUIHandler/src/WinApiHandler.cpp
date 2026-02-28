@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include "ConsoleWindow.hpp"
 
 namespace WindowClass
 {
@@ -39,6 +40,15 @@ static SDL_Event s_sdl_event;
 void DoEvents()
 {
     while (SDL_PollEvent(&s_sdl_event)) {
+        // Route console-window events before general dispatch.
+        if (s_sdl_event.type == SDL_WINDOWEVENT) {
+            if (g_console_window && g_console_window->IsOpen() &&
+                s_sdl_event.window.windowID == g_console_window->GetWindowID()) {
+                g_console_window->HandleWindowEvent(s_sdl_event.window);
+                continue;
+            }
+        }
+
         if (s_sdl_event.type == SDL_QUIT) {
             // Signal quit
             Window::LastKeyPressed = 27; // ESC
@@ -55,6 +65,10 @@ void DoEvents()
             }
         }
     }
+
+    // Refresh the console window (rate-limited internally).
+    if (g_console_window && g_console_window->IsOpen())
+        g_console_window->Update();
 }
 
 void DoEventsNoWait()

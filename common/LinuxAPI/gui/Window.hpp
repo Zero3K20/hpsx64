@@ -98,7 +98,7 @@ protected:
 
 private:
     struct MenuItemInfo {
-        std::string name;
+        std::string  name;      // display text
         MenuCallback callback;
         bool enabled;
         bool checked;
@@ -121,4 +121,17 @@ private:
     std::map<std::string, MenuItemInfo> m_menu_items;
     std::vector<std::string> m_menu_order;
     std::vector<ShortcutEntry> m_shortcuts;
+    // Display names for top-level menus and submenus (keyed by internal name)
+    std::map<std::string, std::string> m_menu_display_text;
+
+protected:
+    // Read-only access for subclasses that need to render the menu bar
+    // (e.g. OpenGLWindow).
+    const std::vector<std::string>&                        GetMenuOrder()      const { return m_menu_order; }
+    const std::map<std::string, std::vector<std::string>>& GetMenuItemsOrder() const { return m_menu_items_order; }
+    const std::map<std::string, MenuItemInfo>&             GetMenuItems()      const { return m_menu_items; }
+    std::string GetMenuDisplayText(const std::string& name) const {
+        auto it = m_menu_display_text.find(name);
+        return (it != m_menu_display_text.end()) ? it->second : name;
+    }
 };

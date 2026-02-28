@@ -4,6 +4,7 @@
 #include "Window.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
+#include <SDL2/SDL_ttf.h>
 #include <vector>
 #include <mutex>
 
@@ -22,6 +23,9 @@ public:
         FIT,
         CENTER
     };
+
+    // Height of the rendered menu bar strip (pixels).
+    static const int MENU_BAR_H = 24;
 
     OpenGLWindow(const std::string& class_name, const std::string& title);
     virtual ~OpenGLWindow();
@@ -75,4 +79,26 @@ private:
     void InitTexture();
     void RenderTexture(int tex_w, int tex_h, DisplayMode mode);
     bool CreatePixelFormat();
+
+    // -----------------------------------------------------------------------
+    // Menu bar rendering
+    // -----------------------------------------------------------------------
+    TTF_Font* m_menu_font         = nullptr; // 13-pt monospace font
+    GLuint    m_menubar_tex       = 0;       // OpenGL texture for the menu bar
+    int       m_menubar_tex_w     = 0;
+    int       m_menubar_tex_h     = 0;
+    bool      m_menubar_dirty     = true;    // rebuild texture on next frame
+
+    // Tracks which top-level menu header is currently "highlighted" (hovered
+    // or clicked) so we can show a visual hint even without a full dropdown.
+    std::string m_hovered_menu;
+
+    // Hit-test rects for each top-level menu header (window-pixel coords).
+    struct MenuHeaderRect { std::string name; SDL_Rect rect; };
+    std::vector<MenuHeaderRect> m_menu_header_rects;
+
+    void InitMenuFont();
+    void BuildMenuBarTexture();
+    void RenderMenuBarGL();
 };
+

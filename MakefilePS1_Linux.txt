@@ -3,8 +3,8 @@
 # Usage: make -f MakefilePS1_Linux.txt
 #
 # Requirements (install on Steam Deck/Arch Linux):
-#   sudo pacman -S gcc make libsdl2 libsdl2-devel mesa mesa-libgl libgl
-#   or: sudo apt-get install g++ make libsdl2-dev libgl1-mesa-dev
+#   sudo pacman -S gcc make sdl2 sdl2_ttf mesa mesa-libgl libgl
+#   or: sudo apt-get install g++ make libsdl2-dev libsdl2-ttf-dev libgl1-mesa-dev
 
 DIR_COMMON = ./common
 DIR_LINUX_API = $(DIR_COMMON)/LinuxAPI
@@ -85,6 +85,7 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS1X64)/hps1x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/capture_console/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gamepad/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
+                     $(wildcard $(DIR_LINUX_API)/console_window/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
                      $(DIR_LINUX_API)/linux_main.cpp \
                      $(DIR_LINUX_API)/memmgmt.cpp \
@@ -136,14 +137,17 @@ SRC_PS1 = $(SRC_PS1_R3000A) $(SRC_PS1_CD) $(SRC_PS1_GPU) $(SRC_PS1_DMA) \
           $(SRC_PS1_INTC) $(SRC_PS1_MDEC) $(SRC_PS1_SPU) $(SRC_PS1_SIO) \
           $(SRC_PS1_PIO) $(SRC_PS1_TIMER) $(SRC_PS1_BUS) $(SRC_PS1_SYSTEM)
 
-# SDL2 flags
+# SDL2 + SDL2_ttf flags
 SDL2_CFLAGS := $(shell sdl2-config --cflags 2>/dev/null || echo "-I/usr/include/SDL2 -D_REENTRANT")
-SDL2_LIBS := $(shell sdl2-config --libs 2>/dev/null || echo "-lSDL2")
+SDL2_LIBS   := $(shell sdl2-config --libs   2>/dev/null || echo "-lSDL2")
+SDL2_TTF_CFLAGS := $(shell pkg-config --cflags SDL2_ttf 2>/dev/null || echo "")
+SDL2_TTF_LIBS   := $(shell pkg-config --libs   SDL2_ttf 2>/dev/null || echo "-lSDL2_ttf")
 
-INC = $(INC_LINUX_COMPAT) $(INC_LINUX_API) $(INC_PS1) $(INC_COMMON) $(INC_PLATFORM) $(INC_YAML) $(SDL2_CFLAGS)
+INC = $(INC_LINUX_COMPAT) $(INC_LINUX_API) $(INC_PS1) $(INC_COMMON) $(INC_PLATFORM) $(INC_YAML) $(SDL2_CFLAGS) $(SDL2_TTF_CFLAGS)
+INC += -I$(DIR_LINUX_API)/console_window
 SRC = $(SRC_PS1) $(SRC_COMMON) $(SRC_LINUX_PLATFORM)
 
-LIBS = $(SDL2_LIBS) -lGL -lGLU -lpthread -ldl
+LIBS = $(SDL2_LIBS) $(SDL2_TTF_LIBS) -lGL -lGLU -lpthread -ldl
 CFLAGS = -w -std=c++17 -fpermissive -ftemplate-depth=2048 -msse4.2 \
          -O3 -DUSE_PS1_GPU_TEMPLATES -DDISABLE_RECOMPILER_R3000A \
          -DLINUX_BUILD

@@ -34,6 +34,10 @@
 
 #include "capture_console.h"
 
+#ifdef LINUX_BUILD
+#  include "ConsoleWindow.hpp"
+#endif
+
 using namespace Playstation1;
 using namespace Utilities::Strings;
 //using namespace Config;
@@ -86,6 +90,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #if !defined(__GNUC__)
 	// don't need this for gcc
 	RedirectIOToConsole();
+#endif
+
+#ifdef LINUX_BUILD
+	// Open a second window for debug/console output, matching the Windows behaviour
+	// where AllocConsole() creates a separate console window showing all log output.
+	static ConsoleWindow s_console_window;
+	if (s_console_window.Create("hps1x64 - Debug Console")) {
+		g_console_window = &s_console_window;
+		// Redirect std::cout and std::cerr to the console window while still
+		// forwarding to the original streambuf (terminal, if any).
+		static ConsoleWindowBuf s_cout_buf(&s_console_window, std::cout.rdbuf());
+		static ConsoleWindowBuf s_cerr_buf(&s_console_window, std::cerr.rdbuf());
+		std::cout.rdbuf(&s_cout_buf);
+		std::cerr.rdbuf(&s_cerr_buf);
+	}
 #endif
 
 

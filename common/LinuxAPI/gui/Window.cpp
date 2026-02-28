@@ -1,6 +1,7 @@
 // Window.cpp - Linux/SDL2 implementation
 
 #include "Window.hpp"
+#include "ConsoleWindow.hpp"
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
@@ -203,22 +204,51 @@ void Window::Show(int /*show_command*/)
 bool Window::ProcessMessages()
 {
     SDL_Event event;
-    bool had_events = false;
+    Uint32 my_win_id = m_sdl_window ? SDL_GetWindowID(m_sdl_window) : 0;
 
     while (SDL_PollEvent(&event)) {
-        had_events = true;
         if (event.type == SDL_QUIT) {
             m_quit_requested = true;
             return false;
         }
+
+        // Route console-window events; don't let them close the game window.
         if (event.type == SDL_WINDOWEVENT) {
+            if (g_console_window && g_console_window->IsOpen() &&
+                event.window.windowID == g_console_window->GetWindowID()) {
+                g_console_window->HandleWindowEvent(event.window);
+                continue;
+            }
+            // Only treat close as quit if it's OUR window.
+            if (my_win_id && event.window.windowID != my_win_id)
+                continue;
             if (event.window.event == SDL_WINDOWEVENT_CLOSE) {
                 m_quit_requested = true;
                 return false;
             }
         }
+
+        // Skip keyboard/mouse events that belong to other windows.
+        if (my_win_id) {
+            Uint32 evt_win = 0;
+            if      (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+                evt_win = event.key.windowID;
+            else if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP)
+                evt_win = event.button.windowID;
+            else if (event.type == SDL_MOUSEMOTION)
+                evt_win = event.motion.windowID;
+
+            if (evt_win && evt_win != my_win_id)
+                continue;
+        }
+
         HandleEvent(event);
     }
+
+    // Refresh console window display while game processes messages.
+    if (g_console_window && g_console_window->IsOpen())
+        g_console_window->Update();
+
     return !m_quit_requested;
 }
 
@@ -363,9 +393,10 @@ void Window::CreateMenuBar()
     // No-op: menus not rendered natively on Linux in this implementation
 }
 
-HMENU Window::AddMenu(const std::string& name, const std::string& /*text*/)
+HMENU Window::AddMenu(const std::string& name, const std::string& text)
 {
     m_menu_order.push_back(name);
+    m_menu_display_text[name] = text;
     return nullptr;
 }
 
@@ -396,10 +427,11 @@ void Window::AddMenuItem(const std::string& menu_name, const std::string& item_n
 }
 
 HMENU Window::AddSubmenu(const std::string& parent_name, const std::string& submenu_name,
-                          const std::string& /*text*/)
+                          const std::string& text)
 {
     m_menu_order.push_back(submenu_name);
     m_menu_items_order[parent_name].push_back(submenu_name);
+    m_menu_display_text[submenu_name] = text;
     return nullptr;
 }
 
