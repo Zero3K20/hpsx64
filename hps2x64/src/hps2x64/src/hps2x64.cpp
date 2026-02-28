@@ -37,6 +37,10 @@
 
 #include "capture_console.h"
 
+#ifdef LINUX_BUILD
+#  include "ConsoleWindow.hpp"
+#endif
+
 #include <immintrin.h>
 
 using namespace WinApi;
@@ -92,6 +96,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #if !defined(__GNUC__)
 	// don't need this for gcc
 	RedirectIOToConsole();
+#endif
+
+#ifdef LINUX_BUILD
+	// Open a second window for debug/console output, matching the Windows behaviour
+	// where AllocConsole() creates a separate console window showing all log output.
+	static ConsoleWindow s_console_window;
+	if (s_console_window.Create("hps2x64 - Debug Console")) {
+		g_console_window = &s_console_window;
+		static ConsoleWindowBuf s_cout_buf(&s_console_window, std::cout.rdbuf());
+		static ConsoleWindowBuf s_cerr_buf(&s_console_window, std::cerr.rdbuf());
+		std::cout.rdbuf(&s_cout_buf);
+		std::cerr.rdbuf(&s_cerr_buf);
+	}
 #endif
 
 	WindowClass::Register ( hInstance, "testSystem" );
@@ -1310,6 +1327,9 @@ void hps2x64::Initialize ()
 	// Show windows
 	std::cout << "Showing windows..." << std::endl;
 	m_prgwindow->Show();
+	// Show keyboard shortcut hints in the title bar so users know how to interact
+	// on Linux/Steam Deck where no native menu bar is rendered.
+	m_prgwindow->SetCaption("hps2x64  |  F1: Help  F2: Load BIOS  F3: Load Game  F5: Run");
 	std::cout << "Windows should now be visible." << std::endl;
 
 #else
@@ -1430,11 +1450,11 @@ void hps2x64::SetupMenus()
 	auto file_menu = m_prgwindow->AddMenu("file", "File");
 
 	m_prgwindow->AddSubmenu("file", "file|load", "Load");
-	m_prgwindow->AddMenuItem("file|load", "load|bios", "BIOS", "",
+	m_prgwindow->AddMenuItem("file|load", "load|bios", "BIOS", "F2",
 		[this]() {
 			OnClick_File_Load_BIOS(0);
 		});
-	m_prgwindow->AddMenuItem("file|load", "load|ps2gamedisk", "PS2 Game Disk", "",
+	m_prgwindow->AddMenuItem("file|load", "load|ps2gamedisk", "PS2 Game Disk", "F3",
 		[this]() {
 			OnClick_File_Load_GameDisk_PS2(0);
 		});
@@ -1457,19 +1477,19 @@ void hps2x64::SetupMenus()
 			OnClick_File_Save_State(0);
 		});
 
-	m_prgwindow->AddMenuItem("file", "file|run", "Run", "Ctrl+R",
+	m_prgwindow->AddMenuItem("file", "file|run", "Run", "F5",
 		[this]() {
 			OnClick_File_Run(0);
 		});
 
-	m_prgwindow->AddMenuItem("file", "file|reset", "Reset", "",
+	m_prgwindow->AddMenuItem("file", "file|reset", "Reset", "F6",
 		[this]() {
-			OnClick_File_Save_State(0);
+			OnClick_File_Reset(0);
 		});
 
 
 	m_prgwindow->AddMenuSeparator("file");
-	m_prgwindow->AddMenuItem("file", "file|exit", "Exit", "",
+	m_prgwindow->AddMenuItem("file", "file|exit", "Exit", "F10",
 		[this]() {
 			OnClick_File_Exit(0);
 		});
@@ -2119,6 +2139,7 @@ void hps2x64::RunProgram_Normal()
 
 #ifdef SPU2_USE_WAVEOUT
 
+			if (SPU2::waveout_driver) {
 				HANDLE h = SPU2::waveout_driver->eventHandle();
 
 				DWORD res = MsgWaitForMultipleObjectsEx(
@@ -2133,6 +2154,9 @@ void hps2x64::RunProgram_Normal()
 
 					SPU2::waveout_driver->onAudioEvent();  // plays queued samples
 				}
+			} else {
+				MsgWaitForMultipleObjectsEx(NULL, NULL, MilliSecsToWait, QS_ALLINPUT, MWMO_ALERTABLE);
+			}
 
 #else
 

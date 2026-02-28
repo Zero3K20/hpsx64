@@ -98,14 +98,40 @@ protected:
 
 private:
     struct MenuItemInfo {
-        std::string name;
+        std::string  name;      // display text
         MenuCallback callback;
         bool enabled;
         bool checked;
     };
 
+    // Keyboard shortcut entry: SDL keycode + modifier mask → menu item key
+    struct ShortcutEntry {
+        SDL_Keycode key;
+        SDL_Keymod  mod;  // required modifiers (KMOD_CTRL, KMOD_SHIFT, etc.) or KMOD_NONE
+        std::string item_name;
+    };
+
+    // Parse a shortcut string like "F2", "Ctrl+R", "F10" into SDL key + modifier.
+    // Returns true on success.
+    static bool ParseShortcutString(const std::string& shortcut,
+                                    SDL_Keycode& out_key, SDL_Keymod& out_mod);
+
     // Simple text-based menu tracking (rendered on key press on Linux)
     std::map<std::string, std::vector<std::string>> m_menu_items_order;
     std::map<std::string, MenuItemInfo> m_menu_items;
     std::vector<std::string> m_menu_order;
+    std::vector<ShortcutEntry> m_shortcuts;
+    // Display names for top-level menus and submenus (keyed by internal name)
+    std::map<std::string, std::string> m_menu_display_text;
+
+protected:
+    // Read-only access for subclasses that need to render the menu bar
+    // (e.g. OpenGLWindow).
+    const std::vector<std::string>&                        GetMenuOrder()      const { return m_menu_order; }
+    const std::map<std::string, std::vector<std::string>>& GetMenuItemsOrder() const { return m_menu_items_order; }
+    const std::map<std::string, MenuItemInfo>&             GetMenuItems()      const { return m_menu_items; }
+    std::string GetMenuDisplayText(const std::string& name) const {
+        auto it = m_menu_display_text.find(name);
+        return (it != m_menu_display_text.end()) ? it->second : name;
+    }
 };

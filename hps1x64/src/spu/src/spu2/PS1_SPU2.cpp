@@ -29,6 +29,8 @@
 
 #include "GeneralUtilities.h"
 
+#include <stdexcept>
+
 
 
 
@@ -1487,7 +1489,8 @@ void SPU2::Run ()
 	
 #ifdef SPU2_USE_WAVEOUT
 
-	waveout_driver->pushSample(adpcm_decoder::clamp(SPU1.SampleL), adpcm_decoder::clamp(SPU1.SampleR));
+	if (waveout_driver)
+		waveout_driver->pushSample(adpcm_decoder::clamp(SPU1.SampleL), adpcm_decoder::clamp(SPU1.SampleR));
 #else
 
 
@@ -3200,7 +3203,16 @@ void SPU2::Start ()
 
 #ifdef SPU2_USE_WAVEOUT
 
+#ifdef LINUX_BUILD
+	try {
+		waveout_driver = new WaveOutDriver(48000, 2, 16, PlayBuffer_Size >> 1, 2, (PlayBuffer_Size >> 1) * 4);
+	} catch (const std::exception& e) {
+		cout << "\nSPU2: WARNING: audio init failed (" << e.what() << ") - running without audio.\n";
+		waveout_driver = nullptr;
+	}
+#else
 	waveout_driver = new WaveOutDriver(48000, 2, 16, PlayBuffer_Size >> 1, 2, (PlayBuffer_Size >> 1) * 4);
+#endif
 
 #else
 

@@ -3,8 +3,8 @@
 # Usage: make -f MakefilePS2_Linux.txt
 #
 # Requirements (install on Steam Deck/Arch Linux):
-#   sudo pacman -S gcc make libsdl2 mesa mesa-libgl libgl
-#   or: sudo apt-get install g++ make libsdl2-dev libgl1-mesa-dev
+#   sudo pacman -S gcc make sdl2 sdl2_ttf mesa mesa-libgl libgl
+#   or: sudo apt-get install g++ make libsdl2-dev libsdl2-ttf-dev libgl1-mesa-dev
 
 DIR_COMMON = ./common
 DIR_LINUX_API = $(DIR_COMMON)/LinuxAPI
@@ -125,6 +125,7 @@ SRC_LINUX_PLATFORM = $(wildcard $(DIR_HPS2X64)/hps2x64/src/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/capture_console/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gamepad/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/gui/*.cpp) \
+                     $(wildcard $(DIR_LINUX_API)/console_window/*.cpp) \
                      $(wildcard $(DIR_LINUX_API)/recompile/*.cpp) \
                      $(DIR_LINUX_API)/linux_main.cpp \
                      $(DIR_LINUX_API)/memmgmt.cpp \
@@ -201,14 +202,17 @@ SRC_PS2 = $(SRC_PS2_R5900) $(SRC_PS2_GPU) $(SRC_PS2_TIMER) $(SRC_PS2_SIO) \
 SRC_MPEGLIB1 = $(wildcard $(DIR_PS2_IPU)/mpeg2lib/Idct.cpp)
 SRC_MPEGLIB2 = $(wildcard $(DIR_PS2_IPU)/mpeg2lib/Mpeg.cpp)
 
-# SDL2 flags
+# SDL2 + SDL2_ttf flags
 SDL2_CFLAGS := $(shell sdl2-config --cflags 2>/dev/null || echo "-I/usr/include/SDL2 -D_REENTRANT")
-SDL2_LIBS := $(shell sdl2-config --libs 2>/dev/null || echo "-lSDL2")
+SDL2_LIBS   := $(shell sdl2-config --libs   2>/dev/null || echo "-lSDL2")
+SDL2_TTF_CFLAGS := $(shell pkg-config --cflags SDL2_ttf 2>/dev/null || echo "")
+SDL2_TTF_LIBS   := $(shell pkg-config --libs   SDL2_ttf 2>/dev/null || echo "-lSDL2_ttf")
 
-INC = $(INC_LINUX_COMPAT) $(INC_LINUX_API) $(INC_PS2) $(INC_COMMON) $(INC_PLATFORM) $(INC_PS1) $(SDL2_CFLAGS)
+INC = $(INC_LINUX_COMPAT) $(INC_LINUX_API) $(INC_PS2) $(INC_COMMON) $(INC_PLATFORM) $(INC_PS1) $(SDL2_CFLAGS) $(SDL2_TTF_CFLAGS)
+INC += -I$(DIR_LINUX_API)/console_window
 SRC = $(SRC_PS2) $(SRC_COMMON) $(SRC_LINUX_PLATFORM) $(SRC_PS1) $(SRC_MPEGLIB1) $(SRC_MPEGLIB2)
 
-LIBS = $(SDL2_LIBS) -lGL -lGLU -lpthread -ldl
+LIBS = $(SDL2_LIBS) $(SDL2_TTF_LIBS) -lGL -lGLU -lpthread -ldl
 CFLAGS = -w -Wreturn-type -Wuninitialized -Wmaybe-uninitialized -std=c++17 \
          -fpermissive -ftemplate-depth=2048 -msse4.2 -mavx2 -O3 \
          -DENABLE_GUI_DEBUGGER -DPS2_COMPILE -DUSE_PS2_GPU_TEMPLATES \
